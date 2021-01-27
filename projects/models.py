@@ -6,7 +6,12 @@ class Project(models.Model):
     description = models.TextField(max_length=250)
     creation_date = models.DateTimeField(auto_now_add=True)
     deadline = models.DateField()
-    # to add owner FK
+    owner = models.ForeignKey(
+        "jwt_auth.User",
+        related_name="created_project",
+        on_delete=models.CASCADE,
+        blank=True,
+    )
 
     def __str__(self):
         return f"{self.name}"
