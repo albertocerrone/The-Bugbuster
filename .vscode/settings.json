@@ -4,9 +4,10 @@
     "statusBar.background": "#ff8686",
     "titleBar.activeBackground": "#ff8686",
     "titleBar.inactiveBackground": "#ff8686",
-    "statusBar.foreground": "#ff8686",
+    "statusBar.foreground": "#ffff",
     "titleBar.inactiveForeground": "#ffffff",
     "titleBar.activeForeground": "#ffffff",
     },
 "window.title": "The Two Muskeeters",
+"python.pythonPath": "/Users/Alberto/.local/share/virtualenvs/project-sei-4-9si4a7oj/bin/python",
 }
