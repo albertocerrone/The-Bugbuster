@@ -6,25 +6,25 @@ import jwt
 
 User = get_user_model()
 
-class JWTAuthentication(BasicAuthentication):
 
+class JWTAuthentication(BasicAuthentication):
     def authenticate(self, request):
-        header = request.headers.get('Authorization')
+        header = request.headers.get("Authorization")
 
         if not header:
             return None
 
-        if not header.startswith('Bearer'):
-            raise PermissionDenied(detail='Invalid Token Format')
+        if not header.startswith("Bearer"):
+            raise PermissionDenied(detail="Invalid Token Format")
 
-        token = header.replace('Bearer ', '')
+        token = header.replace("Bearer ", "")
 
         try:
-            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
-            user = User.objects.get(pk=payload.get('sub'))
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+            user = User.objects.get(pk=payload.get("sub"))
         except jwt.exceptions.InvalidTokenError:
-            raise PermissionDenied(detail='Invalid Token')
+            raise PermissionDenied(detail="Invalid Token")
         except User.DoesNotExist:
-            raise PermissionDenied(detail='User Not Found')
+            raise PermissionDenied(detail="User Not Found")
 
         return (user, token)
