@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "jwt_auth",
     "projects",
     "comments",
+    'tickets',
 ]
 
 MIDDLEWARE = [
