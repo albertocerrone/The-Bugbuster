@@ -1,31 +1,33 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
+
 
 class Ticket(models.Model):
-    BUG = 'BG'
-    NEW_FEATURE = 'NF'
-    UPDATE_FEATURE = 'UF'
-    DELETE_FEATURE = 'DF'
+    BUG = "Bug"
+    NEW_FEATURE = "New Feature"
+    UPDATE_FEATURE = "Update Feature"
+    DELETE_FEATURE = "Delete Feature"
     types_of_tickets = [
-        (BUG, 'Bug'),
-        (NEW_FEATURE, 'New Feature'),
-        (UPDATE_FEATURE, 'Update Feature'),
-        (DELETE_FEATURE, 'Delete Feature'),
+        (BUG, "Bug"),
+        (NEW_FEATURE, "New Feature"),
+        (UPDATE_FEATURE, "Update Feature"),
+        (DELETE_FEATURE, "Delete Feature"),
     ]
-    NEW = 'New'
-    IN_PROGRESS = 'In Progress'
-    FEEDBACK = 'FeedBack'
-    BLOCKED = 'Blocked'
-    RESOLVED = 'Resolved'
+    NEW = "New"
+    IN_PROGRESS = "In Progress"
+    FEEDBACK = "FeedBack"
+    BLOCKED = "Blocked"
+    RESOLVED = "Resolved"
     tickets_status = [
-        (NEW, 'New'),
-        (IN_PROGRESS, 'In Progress'),
-        (FEEDBACK, 'Feedback'),
-        (BLOCKED, 'Blocked'),
-        (RESOLVED, 'Resolved'),
+        (NEW, "New"),
+        (IN_PROGRESS, "In Progress"),
+        (FEEDBACK, "Feedback"),
+        (BLOCKED, "Blocked"),
+        (RESOLVED, "Resolved"),
     ]
     title = models.CharField(max_length=30)
     types = models.CharField(
-        max_length=2,
+        max_length=14,
         choices=types_of_tickets,
         default=BUG,
     )
@@ -38,12 +40,16 @@ class Ticket(models.Model):
         blank=True,
     )
     owner = models.ForeignKey(
-        'jwt_auth.User',
-        related_name='created_ticket',
+        "jwt_auth.User",
+        related_name="created_ticket",
         on_delete=models.DO_NOTHING,
         blank=True,
     )
+    project = models.ForeignKey(
+        "projects.Project",
+        related_name="tickets",
+        on_delete=models.CASCADE,
+    )
 
     def __str__(self):
-        return f"{self.number} - {self.title}"
-
+        return f"{self.title} - {self.project} - {self.status}"

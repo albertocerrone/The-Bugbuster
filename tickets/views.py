@@ -5,7 +5,10 @@ from rest_framework.exceptions import NotFound, PermissionDenied
 
 from .models import Ticket
 from .serializers.common import TicketSerializer
-from .serializers.populated import PopulatedTicketSerializer
+from .serializers.populated import (
+    PopulatedTicketSerializer,
+    PopulatedTicketWithOwnerSerializer,
+)
 
 
 class TicketListView(APIView):
@@ -14,10 +17,9 @@ class TicketListView(APIView):
         serialized_ticket = PopulatedTicketSerializer(tickets, many=True)
         return Response(serialized_ticket.data, status=status.HTTP_200_OK)
 
-
     def post(self, request):
         request.data["owner"] = request.user.id
-        ticket_to_create = TicketSerializer(data=request.data)
+        ticket_to_create = PopulatedTicketSerializer(data=request.data)
         if ticket_to_create.is_valid():
             ticket_to_create.save()
             return Response(ticket_to_create.data, status=status.HTTP_201_CREATED)

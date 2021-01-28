@@ -5,7 +5,10 @@ from rest_framework.exceptions import NotFound, PermissionDenied
 
 from .models import Project
 from .serializers.common import ProjectSerializer
-from .serializers.populated import PopulatedProjectSerializer
+from .serializers.populated import (
+    PopulatedProjectSerializer,
+    PopulatedProjectWithTicketsSerializer,
+)
 
 
 class ProjectListView(APIView):
@@ -35,7 +38,7 @@ class ProjectDetailView(APIView):
 
     def get(self, _request, pk):
         project = self.get_project(pk=pk)
-        serialized_project = PopulatedProjectSerializer(project)
+        serialized_project = PopulatedProjectWithTicketsSerializer(project)
         return Response(serialized_project.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk):

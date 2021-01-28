@@ -6,6 +6,7 @@ from .serializers.populated import (
     PopulatedUsersMemberSerializer,
     PopulatedGroupMemberSerializer,
 )
+from group_members.serializers.common import GroupMemberSerializer
 
 from .models import GroupMember
 
@@ -15,13 +16,13 @@ class GroupMemberListView(APIView):
 
     def get(self, _request):
         group_members = GroupMember.objects.all()
-        serialized_group_members = PopulatedUsersMemberSerializer(
+        serialized_group_members = PopulatedGroupMemberSerializer(
             group_members, many=True
         )
         return Response(serialized_group_members.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        group_member_to_create = PopulatedGroupMemberSerializer(data=request.data)
+        group_member_to_create = GroupMemberSerializer(data=request.data)
         if group_member_to_create.is_valid():
             group_member_to_create.save()
             return Response(group_member_to_create.data, status=status.HTTP_201_CREATED)
