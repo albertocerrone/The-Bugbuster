@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
+
 class UserSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField(write_only=True)
@@ -12,26 +13,26 @@ class UserSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
 
-        password = data.pop('password')
-        password_confirmation = data.pop('password_confirmation')
+        password = data.pop("password")
+        password_confirmation = data.pop("password_confirmation")
         if password != password_confirmation:
-            raise ValidationError({'password_confirmation': 'does not match'})
+            raise ValidationError({"password_confirmation": "does not match"})
 
         # try:
         #     password_validation.validate_password(password=password)
         # except ValidationError as err:
         #     raise ValidationError({'password': err.messages})
 
-        data['password'] = make_password(password)
+        data["password"] = make_password(password)
 
         return data
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = "__all__"
+
 
 class NestedUserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
-        fields = ('id', 'username', 'profile_image')
+        fields = ("id", "first_name", "profile_image")

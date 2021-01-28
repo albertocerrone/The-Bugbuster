@@ -27,7 +27,13 @@ class GroupMember(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name}"
+        return f"User: {self.user.first_name} Project: {self.project.name}"
+
+    class Meta:
+        unique_together = (
+            "user",
+            "project",
+        )
 
     def is_manager(self):
         return self.role in self.manager
