@@ -7,7 +7,6 @@ from .models import Ticket
 from .serializers.common import TicketSerializer
 from .serializers.populated import (
     PopulatedTicketSerializer,
-    PopulatedTicketWithOwnerSerializer,
 )
 
 
@@ -19,7 +18,7 @@ class TicketListView(APIView):
 
     def post(self, request):
         request.data["owner"] = request.user.id
-        ticket_to_create = PopulatedTicketSerializer(data=request.data)
+        ticket_to_create = TicketSerializer(data=request.data)
         if ticket_to_create.is_valid():
             ticket_to_create.save()
             return Response(ticket_to_create.data, status=status.HTTP_201_CREATED)
@@ -46,7 +45,7 @@ class TicketDetailView(APIView):
         if ticket_to_update.owner.id != request.user.id:
             raise PermissionDenied()
         updated_ticket = TicketSerializer(ticket_to_update, data=request.data)
-        if ticket_to_update.is_valid():
+        if updated_ticket.is_valid():
             updated_ticket.save()
             return Response(updated_ticket.data, status=status.HTTP_202_ACCEPTED)
         return Response(

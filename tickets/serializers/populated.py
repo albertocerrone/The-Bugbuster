@@ -7,6 +7,8 @@ from ..serializers.common import DetailTicketSerializer, TicketSerializer
 class PopulatedTicketSerializer(TicketSerializer):
     owner = PopulatedUsersMemberSerializer()
     project = ProjectSerializer()
+    assigned_user = PopulatedUsersMemberSerializer()
+    comments = PopulatedNestedCommentSerializer(many=True)
 
 
 class PopulatedTicketWithOwnerSerializer(DetailTicketSerializer):
