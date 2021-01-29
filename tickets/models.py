@@ -40,8 +40,8 @@ class Ticket(models.Model):
         blank=True,
     )
     owner = models.ForeignKey(
-        "jwt_auth.User",
-        related_name="created_ticket",
+        "group_members.GroupMember",
+        related_name="created_tickets",
         on_delete=models.DO_NOTHING,
     )
     project = models.ForeignKey(

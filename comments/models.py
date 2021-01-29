@@ -5,7 +5,7 @@ class Comment(models.Model):
     content = models.TextField(max_length=200)
     creation_date = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(
-        "jwt_auth.User",
+        "group_members.GroupMember",
         related_name="posted_comments",
         on_delete=models.CASCADE,
     )

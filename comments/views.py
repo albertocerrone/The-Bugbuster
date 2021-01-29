@@ -1,3 +1,4 @@
+from comments.serializers.populated import PopulatedCommentSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, PermissionDenied
@@ -13,9 +14,15 @@ class CommentListView(APIView):
 
     permission_classes = (IsAuthenticated,)
 
+    def get(self, _request):
+        comments = Comment.objects.all()
+        serialized_comments = PopulatedCommentSerializer(comments, many=True)
+        return Response(serialized_comments.data, status=status.HTTP_200_OK)
+
     def post(self, request):
-        request.data["owner"] = request.user.id
+        # request.data["owner"] = request.user.id
         comment_to_create = CommentSerializer(data=request.data)
+        print(comment_to_create)
         if comment_to_create.is_valid():
             comment_to_create.save()
             return Response(comment_to_create.data, status=status.HTTP_201_CREATED)

@@ -1,13 +1,13 @@
-from jwt_auth.serializers.common import NestedUserSerializer
+from group_members.serializers.populated import PopulatedUsersMemberSerializer
 from tickets.serializers.common import DetailTicketSerializer
 from ..serializers.common import CommentSerializer, NestedCommentSerializer
 
 
 class PopulatedNestedCommentSerializer(NestedCommentSerializer):
-    owner = NestedUserSerializer()
+    owner = PopulatedUsersMemberSerializer()
 
 
 class PopulatedCommentSerializer(CommentSerializer):
 
-    owner = NestedUserSerializer()
+    owner = PopulatedUsersMemberSerializer()
     ticket = DetailTicketSerializer()
