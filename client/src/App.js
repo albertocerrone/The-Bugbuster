@@ -1,37 +1,35 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Register from './components/register'
+import { ThemeProvider, CssBaseline } from '@material-ui/core'
+import GlobalStyles from './styles/GlobalStyles'
 
+import LandingPage from './components/common/LandingPage'
+import Register from './components/auth/Register'
+import SideBar from './components/common/SideBar'
+import NavBar from './components/common/NavBar'
+
+import theme from './styles/theme/index'
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/register" component={Register} />
-      </Switch>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <GlobalStyles />
+
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/register" component={Register} />
+          <div className="">
+            <SideBar />
+            <NavBar />
+          </div>
+        </Switch>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 
 export default App
 
-// import React from 'react'
-
-// class App extends React.Component {
-//   async componentDidMount() {
-//     try {
-//       const response = await fetch('/api/tickets/')
-//       const data = await response.json()
-//       console.log(data)
-//     } catch (err) {
-//       console.log(err)
-//     }
-//   }
-
-//   render() {
-//     return null
-//   }
-// }
-
-// export default App
