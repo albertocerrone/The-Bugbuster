@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 // // import { useHistory } from 'react-router-dom'
+import ImageUploadField from './imageUpload'
 
 function Register() {
 
@@ -10,8 +11,7 @@ function Register() {
     email: '',
     password: '',
     password_confirmation: '',
-    profile_image:
-      'https://res.cloudinary.com/dcwxp0m8g/image/upload/v1610368867/pokezon/default_user_image.png',
+    profile_image: '',
     first_name: '',
     last_name: ''
   })
@@ -30,18 +30,18 @@ function Register() {
       console.log(response)
 
       // setTimeout(()=>{
-      //   history.push('/pokelogin')
+      //   history.push('/login')
       // },500)
     } catch (err) {
       console.log(err.response)
     }
   }
   function registerUser(formdata) {
-    return axios.post('/auth/register', formdata)
+    return axios.post('/api/auth/register/', formdata)
   }
 
   return (
-    <section className="page_wrapper float_up_register">
+    <section>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username</label>
@@ -53,7 +53,7 @@ function Register() {
           />
         </div>
         <div>
-          <label></label>
+          <label>Email</label>
           <input
             placeholder="email"
             name="email"
@@ -64,6 +64,7 @@ function Register() {
         <div>
           <label>Password</label>
           <input
+            type="password"
             placeholder="password"
             name="password"
             onChange={handleChange}
@@ -73,6 +74,7 @@ function Register() {
         <div>
           <label>Password Confirmation</label>
           <input
+            type="password"
             placeholder="passwordConfirmation"
             name="password_confirmation"
             onChange={handleChange}
@@ -81,11 +83,15 @@ function Register() {
         </div>
         <div>
           <label>Profile Image</label>
-          <input
-            placeholder="profile image"
+          <ImageUploadField
+            value={formdata.profile_image}
             name="profile_image"
             onChange={handleChange}
+          />
+          <input
             value={formdata.profile_image}
+            name="profile_image"
+            onChange={handleChange}
           />
         </div>
         <div>
