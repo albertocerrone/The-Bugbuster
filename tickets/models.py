@@ -43,12 +43,16 @@ class Ticket(models.Model):
         "jwt_auth.User",
         related_name="created_ticket",
         on_delete=models.DO_NOTHING,
-        blank=True,
     )
     project = models.ForeignKey(
         "projects.Project",
         related_name="tickets",
         on_delete=models.CASCADE,
+    )
+    assigned_user = models.ForeignKey(
+        "group_members.GroupMember",
+        related_name="tickets",
+        on_delete=models.DO_NOTHING,
     )
 
     def __str__(self):

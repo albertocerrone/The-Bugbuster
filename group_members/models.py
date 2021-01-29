@@ -27,7 +27,7 @@ class GroupMember(models.Model):
     )
 
     def __str__(self):
-        return f"User: {self.user.first_name} Project: {self.project.name}"
+        return f"User: {self.user.first_name} {self.user.last_name} - Role: {self.role} - Project: {self.project.name}"
 
     class Meta:
         unique_together = (

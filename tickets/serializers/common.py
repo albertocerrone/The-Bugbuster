@@ -19,4 +19,6 @@ class DetailTicketSerializer(serializers.ModelSerializer):
             "description",
             "creation_date",
             "status",
+            "assigned_user",
+            "comments",
         )

@@ -10,7 +10,6 @@ class Project(models.Model):
         "jwt_auth.User",
         related_name="created_project",
         on_delete=models.CASCADE,
-        blank=True,
     )
 
     def __str__(self):

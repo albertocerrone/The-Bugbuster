@@ -1,7 +1,9 @@
 from ..serializers.common import UserSerializer
+from comments.serializers.common import CommentSerializer
+
 
 class PopulatedUserSerializer(UserSerializer):
 
-    # created_pokemon = PokemonSerializer(many=True)
-    # posted_comments = CommentSerializer(many=True)
-    # favorited_pokemon = PokemonSerializer(many=True)
+    posted_comments = CommentSerializer(many=True)
+    # created_projects = PokemonSerializer(many=True)
+    # created_tickets = PokemonSerializer(many=True)
