@@ -1,14 +1,15 @@
 {
 "python.linting.pylintEnabled": true,
 "workbench.colorCustomizations": {
-    "statusBar.background": "#ff8686",
-    "titleBar.activeBackground": "#ff8686",
-    "titleBar.inactiveBackground": "#ff8686",
-    "statusBar.foreground": "#ffff",
-    "titleBar.inactiveForeground": "#ffffff",
-    "titleBar.activeForeground": "#ffffff",
+    "statusBar.background": "#ffffff",
+    "titleBar.activeBackground": "#0000009f",
+    "titleBar.inactiveBackground": "#ffffff",
+    "statusBar.foreground": "#001d49",
+    "titleBar.inactiveForeground": "#001d49",
+    "titleBar.activeForeground": "#ff8686",
     },
-"window.title": "The Two Muskeeters",
+"window.title": "🎠🎠 The Two Muskeeters 🎠🎠",
 "python.pythonPath": "/Users/Alberto/.local/share/virtualenvs/project-sei-4-9si4a7oj/bin/python",
 "python.formatting.provider": "black",
 }
+// ff8686 pink
