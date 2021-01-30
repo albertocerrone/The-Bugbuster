@@ -1,9 +1,10 @@
 export default {
   allVariants: {
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Poppins, Helvetica, Arial'
   },
   h1: {
-    fontWeight: 500,
+    fontWeight: 600,
     fontSize: 35,
     letterSpacing: '-0.24px'
   },
