@@ -35,4 +35,9 @@ class UserSerializer(serializers.ModelSerializer):
 class NestedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("id", "first_name", "last_name", "profile_image")
+        fields = (
+            "id",
+            "first_name",
+            "last_name",
+            "profile_image",
+        )

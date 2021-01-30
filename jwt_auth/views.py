@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 
-from .serializers.common import UserSerializer
+from .serializers.common import NestedUserSerializer, UserSerializer
 from .serializers.populated import PopulatedUserSerializer
 
 User = get_user_model()

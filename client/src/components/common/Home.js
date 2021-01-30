@@ -43,7 +43,6 @@ function Home() {
 
 
   function checkStatus() {
-    console.log('llegue')
     if (unauthorized) {
       return (
         <div>

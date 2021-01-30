@@ -1,7 +1,41 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
-import axios from 'axios' 
-import { useHistory } from 'react-router-dom'
-import ImageUpload from '../../components/ImageUpload'
+import { useHistory, Link as RouterLink } from 'react-router-dom'
+import ImageUpload from '../imageUpload'
+import { registerUser } from '../../lib/api'
+
+import {
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormHelperText,
+  Link,
+  TextField,
+  Typography,
+  makeStyles
+} from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100%',
+    paddingBottom: theme.spacing(3),
+    paddingTop: theme.spacing(3)
+  },
+  form: {
+    background: 'rgba(0, 0, 0, 0.1)',
+    backdropFilter: 'blur(30px)',
+    padding: '5%',
+    borderRadius: '45px'
+  },
+  logo: {
+    fontSize: 45,
+    fontWeight: 600,
+    background: 'linear-gradient(96.21deg, #E751D8 39.3%, #17D5EF 90.17%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent'
+  }
+}))
 
 function Register() {
 
@@ -10,10 +44,10 @@ function Register() {
     username: '',
     email: '',
     password: '',
-    password_confirmation: '',
-    profile_image: '',
-    first_name: '',
-    last_name: ''
+    passwordConfirmation: '',
+    profileImage: '',
+    firstName: '',
+    lastName: ''
   })
   const [errors, setErrors] = React.useState({
     username: '',
@@ -27,10 +61,9 @@ function Register() {
 
 
   const handleChange = (e) => {
-    setFormdata({ ...formdata, [e.target.name]: e.target.value })  
+    setFormdata({ ...formdata, [e.target.name]: e.target.value })
   }
   console.log(formdata)
-
 
 
   const handleSubmit = async (e) => {
@@ -59,102 +92,139 @@ function Register() {
       } else {
         // setErrors('')
       }
-      // errors = err.response.data.username[0]
       console.log('err.response.data: ', data)
     }
   }
 
-  function registerUser(formdata) {
-    return axios.post('/api/auth/register/', formdata)
-  }
+  const classes = useStyles()
+
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-        <div>
-          
-          <label>Username</label>
-          <input
-            placeholder="username"
-            name="username"
-            onChange={handleChange}
-            value={formdata.username}
-          />
-          <p>{errors.username}</p>
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            placeholder="email"
-            name="email"
-            onChange={handleChange}
-            value={formdata.email}
-          />
-          <p>{errors.email}</p>
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="password"
-            name="password"
-            onChange={handleChange}
-            value={formdata.password}
-          />
-          <p>{errors.password}</p>
-        </div>
-        <div>
-          <label>Password Confirmation</label>
-          <input
-            type="password"
-            placeholder="passwordConfirmation"
-            name="password_confirmation"
-            onChange={handleChange}
-            value={formdata.password_confirmation}
-          />
-          <p>{errors.passwordConfirmation}</p>
-        </div>
-        <div>
-          <label>Profile Image</label>
-          <ImageUpload
-            value={formdata.profile_image}
-            name="profile_image"
-            onChange={handleChange}
-          />
-          <input
-            value={formdata.profile_image}
-            name="profile_image"
-            onChange={handleChange}
-          />
-          <p>{errors.profileImage}</p>
-        </div>
-        <div>
-          <label>First Name</label>
-          <input
-            placeholder="first name"
-            name="first_name"
-            onChange={handleChange}
-            value={formdata.first_name}
-          />
-          <p>{errors.firstName}</p>
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input
-            placeholder="last name"
-            name="last_name"
-            onChange={handleChange}
-            value={formdata.last_name}
-          />
-          <p>{errors.lastName}</p>
-        </div>
-        <div className="button_wrapper flexend">
-          <button type="submit">
-            Register
-          </button>
-        </div>
-      </form>
-    </section>
+    <Container fixed
+      className={classes.root}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        height="100%"
+        justifyContent="center" >
+        <Container maxWidth="sm">
+          <form onSubmit={handleSubmit} className={classes.form}>
+            <Box mb={3} style={{ marginLeft: '20%' }}>
+              <Typography
+                color="textSecondary"
+                gutterBottom
+                variant="h3"
+              >
+                the <span className={classes.logo}>BugBuster</span>
+              </Typography>
+            </Box>
+            <TextField
+              error={Boolean(errors.username)}
+              fullWidth
+              helperText={errors.username}
+              label="Username"
+              margin="normal"
+              name="username"
+              onChange={handleChange}
+              value={formdata.username}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(errors.firstName)}
+              fullWidth
+              helperText={errors.firstName}
+              label="First Name"
+              margin="normal"
+              name="firstName"
+              onChange={handleChange}
+              value={formdata.firstName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(errors.lastName)}
+              fullWidth
+              helperText={errors.lastName}
+              label="Last Name"
+              margin="normal"
+              name="lastName"
+              onChange={handleChange}
+              value={formdata.lastName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(errors.email)}
+              fullWidth
+              helperText={errors.email}
+              label="E-Mail"
+              margin="normal"
+              name="email"
+              onChange={handleChange}
+              value={formdata.email}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(errors.password)}
+              fullWidth
+              helperText={errors.password}
+              label="Password"
+              margin="normal"
+              name="password"
+              onChange={handleChange}
+              value={formdata.password}
+              variant="outlined"
+              type="password"
+            />
+            <TextField
+              error={Boolean(errors.passwordConfirmation)}
+              fullWidth
+              helperText={errors.passwordConfirmation}
+              label="Password Confirmation"
+              margin="normal"
+              name="passwordConfirmation"
+              onChange={handleChange}
+              value={formdata.passwordConfirmation}
+              variant="outlined"
+              type="password"
+            />
+            <div>
+              <ImageUpload
+                value={formdata.profile_image}
+                name="profile_image"
+                button='Upload Profile Picture'
+                onChange={handleChange}
+              />
+              <p>{errors.profileImage}</p>
+            </div>
+            <Box my={2}>
+              <Button
+                color="primary"
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+              >
+                Sign up now
+              </Button>
+            </Box>
+            <Typography
+              color="textSecondary"
+              variant="body1"
+            >
+              Have an account?
+              {' '}
+              <Link
+                component={RouterLink}
+                to="/login"
+                variant="h6"
+              >
+                Sign in
+              </Link>
+            </Typography>
+          </form>
+        </Container>
+      </Box>
+    </Container>
+
   )
 }
 
