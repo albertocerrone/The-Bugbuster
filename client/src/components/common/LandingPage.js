@@ -4,6 +4,7 @@ import { Grid, Container, Typography, makeStyles, Button, Box } from '@material-
 import { Link } from 'react-router-dom'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import BugReportRoundedIcon from '@material-ui/icons/BugReportRounded'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -14,6 +15,26 @@ const useStyles = makeStyles(() => ({
     background: 'linear-gradient(96.21deg, #E751D8 39.3%, #17D5EF 90.17%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent'
+  },
+  firstBug: {
+    position: 'absolute',
+    width: '50%',
+    height: '55%',
+    left: '-5%',
+    top: '-10%',
+    transform: 'rotate(140deg)',
+    zIndex: '-1',
+    color: 'rgba(23, 213, 239, 0.07)'
+  },
+  secondBug: {
+    position: 'absolute',
+    width: '50%',
+    height: '50%',
+    left: '55%',
+    top: '50%',
+    zIndex: '-1',
+    color: 'rgba(231, 81, 216, 0.07)',
+    transform: 'rotate(40deg)'
   }
 }))
 
@@ -30,7 +51,9 @@ function LandingPage() {
         alignItems="center"
         className={classes.root}
       >
-        <Grid item >
+        <BugReportRoundedIcon className={classes.firstBug} />
+        <BugReportRoundedIcon className={classes.secondBug} />
+        <Grid item xs={12} sm={6} >
           <Grid container
             direction="column"
             spacing={3}
@@ -50,7 +73,7 @@ function LandingPage() {
                 <Grid item>
                   <Typography
                     variant="h1"
-                    // gutterBottom="true"
+                    gutterBottom="true"
                     className={classes.logo}
                   >
                     BugBuster
@@ -68,7 +91,7 @@ function LandingPage() {
 
           </Grid>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6}>
           <Grid container
             justify="space-evenly"
           >
