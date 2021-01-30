@@ -1,7 +1,7 @@
 import React from 'react'
-import axios from 'axios'
+import axios from 'axios' 
 import { useHistory } from 'react-router-dom'
-import ImageUpload from '../imageUpload'
+import ImageUpload from '../../components/ImageUpload'
 
 function Register() {
 
@@ -57,7 +57,7 @@ function Register() {
       if (errarr) {
         setErrors(errarr)
       } else {
-        setErrors('')
+        // setErrors('')
       }
       // errors = err.response.data.username[0]
       console.log('err.response.data: ', data)
@@ -78,10 +78,6 @@ function Register() {
             placeholder="username"
             name="username"
             onChange={handleChange}
-            // onChange={()=>{
-            //   handleChange()
-            //   // handleValidation()
-            // }}
             value={formdata.username}
           />
           <p>{errors.username}</p>

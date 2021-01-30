@@ -104,9 +104,6 @@ function Register() {
               />
               {/* {errors.username === undefined ? null : <p>{errors.username[0]}</p>} */}
             </div>
-
-
-
             <Box my={2}>
               <Button
                 color="primary"

@@ -9,7 +9,7 @@ const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
 // console.log(uploadPreset)
 
 // 
-function imageUpload( { value, name, onChange } ) {
+function ImageUpload( { value, name, onChange } ) {
   const [ hover, setHover] = React.useState(false)
   const handleUpload = async e => {
     const data = new FormData()  
@@ -47,4 +47,4 @@ function imageUpload( { value, name, onChange } ) {
   )
 }
 
-export default imageUpload
+export default ImageUpload
