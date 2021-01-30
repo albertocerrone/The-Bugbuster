@@ -1,38 +1,44 @@
-
+//*Gets a users token 
 export function setToken(token) {
-  window.localStorage.setItem('token', token) 
+  window.localStorage.setItem('token', token)
 }
 
+//*Retrives a token from storage
 export function getToken() {
-  return  window.localStorage.getItem('token')
+  return window.localStorage.getItem('token')
 }
 
+//*Log a user out
 export function logout() {
-  return  window.localStorage.removeItem('token')  
+  window.localStorage.removeItem('token')
 }
 
-export function getPayload() {
+//*Gets payload
+function getPayload() {
   const token = getToken()
   if (!token) return false
-  const parts = token.split('.') 
-  if (parts.length < 3) return false 
-  return JSON.parse(atob(parts[1])) 
+  const parts = token.split('.')
+  if (parts.length < 2) return false
+  return JSON.parse(atob(parts[1]))
 }
 
+//*Gets user id
+export function getUserId() {
+  return getPayload().sub
+}
 
+//*Get Payload
 export function isAuthenticated() {
   const payload = getPayload()
-  if (!payload) return false 
-  const now = Math.round(Date.now() / 1000) 
-  // console.log(payload.exp)
-  // console.log(now)
-  // console.log(now < payload.exp)
+  if (!payload) return false
+  const now = Math.round(Date.now() / 1000)
   return now < payload.exp
 }
 
+//*Is a user an owner 
 export function isOwner(userId) {
   const payload = getPayload()
   if (!payload) return false
-  return userId === payload.sub 
+  return userId === payload.sub
 }
 
