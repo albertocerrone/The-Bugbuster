@@ -4,7 +4,8 @@ import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import GlobalStyles from './styles/GlobalStyles'
 
 import LandingPage from './components/common/LandingPage'
-import Register from './components/auth/Register'
+import Register from './components/auth/register/Register'
+import Login from './components/auth/Login'
 import SideBar from './components/common/SideBar'
 import NavBar from './components/common/NavBar'
 
@@ -21,6 +22,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
           <div className="">
             <SideBar />
             <NavBar />
