@@ -6,7 +6,7 @@ import ImageUploadField from './imageUpload'
 function Register() {
 
   const history = useHistory()
-  let errors 
+  let errors
   const [formdata, setFormdata] = React.useState({
     username: '',
     email: '',
@@ -17,9 +17,18 @@ function Register() {
     last_name: ''
   })
 
+  // const [errs, setErrs] = React.useState({
+  //   email: ''
+  // })
+
   const handleChange = (e) => {
-    setFormdata({ ...formdata, [e.target.name]: e.target.value })
+    setFormdata({ ...formdata, [e.target.name]: e.target.value })  
   }
+
+  // const handleValidator = (e) => {
+  //   errors = e.response.data
+  //   console.log('err.response.data: ', errors)
+  // }
 
 
   // const handleValidation = (err) => {
@@ -41,8 +50,9 @@ function Register() {
       },500)
     } catch (err) {
       // console.log(err.response.data)
+      
       errors = err.response.data
-      console.log(errors)
+      console.log('err.response.data: ', errors)
     }
   }
   function registerUser(formdata) {
@@ -64,9 +74,12 @@ function Register() {
             // }}
             value={formdata.username}
           />
+          {/* <p>{errors.email[0]}</p> */}
+          {/* {errors === '' ? '' : <p>{errors.email[0]}</p>} */}
           {/* {errors.username === undefined ? null : <p>{errors.username[0]}</p>} */}
         </div>
         <div>
+          <label>{errors}</label>
           <label>Email</label>
           <input
             placeholder="email"
