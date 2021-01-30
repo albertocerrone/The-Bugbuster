@@ -1,17 +1,18 @@
 import React from 'react'
 import axios from 'axios'
-// // import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import ImageUploadField from './imageUpload'
 
 function Register() {
 
-  // const history = useHistory()
+  const history = useHistory()
+  let errors 
   const [formdata, setFormdata] = React.useState({
     username: '',
     email: '',
     password: '',
     password_confirmation: '',
-    profile_image:
-      'https://res.cloudinary.com/dcwxp0m8g/image/upload/v1610368867/pokezon/default_user_image.png',
+    profile_image: '',
     first_name: '',
     last_name: ''
   })
@@ -19,6 +20,12 @@ function Register() {
   const handleChange = (e) => {
     setFormdata({ ...formdata, [e.target.name]: e.target.value })
   }
+
+
+  // const handleValidation = (err) => {
+  //   setErrors(err.response.data)
+  //   console.log(errors)
+  // }
 
   console.log(formdata)
 
@@ -29,19 +36,21 @@ function Register() {
       const response = await registerUser(formdata)
       console.log(response)
 
-      // setTimeout(()=>{
-      //   history.push('/pokelogin')
-      // },500)
+      setTimeout(()=>{
+        history.push('/login')
+      },500)
     } catch (err) {
-      console.log(err.response)
+      // console.log(err.response.data)
+      errors = err.response.data
+      console.log(errors)
     }
   }
   function registerUser(formdata) {
-    return axios.post('/auth/register', formdata)
+    return axios.post('/api/auth/register/', formdata)
   }
 
   return (
-    <section className="page_wrapper float_up_register">
+    <section>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username</label>
@@ -49,11 +58,16 @@ function Register() {
             placeholder="username"
             name="username"
             onChange={handleChange}
+            // onChange={()=>{
+            //   handleChange()
+            //   // handleValidation()
+            // }}
             value={formdata.username}
           />
+          {/* {errors.username === undefined ? null : <p>{errors.username[0]}</p>} */}
         </div>
         <div>
-          <label></label>
+          <label>Email</label>
           <input
             placeholder="email"
             name="email"
@@ -64,6 +78,7 @@ function Register() {
         <div>
           <label>Password</label>
           <input
+            type="password"
             placeholder="password"
             name="password"
             onChange={handleChange}
@@ -73,6 +88,7 @@ function Register() {
         <div>
           <label>Password Confirmation</label>
           <input
+            type="password"
             placeholder="passwordConfirmation"
             name="password_confirmation"
             onChange={handleChange}
@@ -81,11 +97,15 @@ function Register() {
         </div>
         <div>
           <label>Profile Image</label>
-          <input
-            placeholder="profile image"
+          <ImageUploadField
+            value={formdata.profile_image}
             name="profile_image"
             onChange={handleChange}
+          />
+          <input
             value={formdata.profile_image}
+            name="profile_image"
+            onChange={handleChange}
           />
         </div>
         <div>
