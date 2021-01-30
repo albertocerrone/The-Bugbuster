@@ -154,7 +154,6 @@ function Register() {
         </div>
         <div className="button_wrapper flexend">
           <button type="submit">
-            {/* <img src="" alt="pokeball" /> */}
             Register
           </button>
         </div>
