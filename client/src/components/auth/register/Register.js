@@ -54,7 +54,8 @@ function Register() {
       await registerUser(formdata)
       history.push('/login')
     } catch (err) {
-      setErrors(err.response.data.errors)
+      console.log(err.response)
+      setErrors(err.response.data)
     }
   }
 
@@ -85,7 +86,7 @@ function Register() {
             </Box>
             <TextField
               fullWidth
-              helperText={errors.username}
+              helperText={errors.password}
               label="Username"
               margin="normal"
               name="username"

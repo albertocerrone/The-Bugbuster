@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-
+import { Button } from '@material-ui/core'
 
 const uploadUrl = process.env.REACT_APP_CLOUDINARY_URL
 const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
@@ -9,17 +9,17 @@ const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
 // console.log(uploadPreset)
 
 // 
-function imageUpload( { value, name, onChange } ) {
-  const [ hover, setHover] = React.useState(false)
+function imageUpload({ value, name, onChange, button }) {
+  const [hover, setHover] = React.useState(false)
   const handleUpload = async e => {
-    const data = new FormData()  
+    const data = new FormData()
     data.append('file', e.target.files[0])
     data.append('upload_preset', uploadPreset)
     const res = await axios.post(uploadUrl, data)
     onChange({ target: { name, value: res.data.url } }) //* handleChange triggered
   }
-  
-  const handleHover = () =>{
+
+  const handleHover = () => {
     setHover(!hover)
   }
 
@@ -29,19 +29,25 @@ function imageUpload( { value, name, onChange } ) {
     <>
       <div className="profile_preview">
         <div>
-          <img src={value} style={{ width: '100%', height: 'auto' }}/>
+          <img src={value} style={{ width: '50%', height: 'auto' }} />
         </div>
       </div>
       <div>
         <div onMouseEnter={handleHover} onMouseLeave={handleHover}>
           <input
-            id="upload"
+            id="contained-button-file"
             type="file"
             accept="jpg"
             onChange={handleUpload}
             name={name}
+            style={{ display: 'none' }}
           />
-        </div>  
+          <label htmlFor="contained-button-file">
+            <Button variant="contained" color="secondary" component="span">
+              {button}
+            </Button>
+          </label>
+        </div>
       </div>
     </>
   )
