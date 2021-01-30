@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
-import ImageUploadField from './imageUpload'
+import ImageUpload from '../imageUpload'
 
 function Register() {
 
   const history = useHistory()
-  let errors 
+  let errors
   const [formdata, setFormdata] = React.useState({
     username: '',
     email: '',
@@ -36,9 +36,9 @@ function Register() {
       const response = await registerUser(formdata)
       console.log(response)
 
-      setTimeout(()=>{
+      setTimeout(() => {
         history.push('/login')
-      },500)
+      }, 500)
     } catch (err) {
       // console.log(err.response.data)
       errors = err.response.data
@@ -97,7 +97,7 @@ function Register() {
         </div>
         <div>
           <label>Profile Image</label>
-          <ImageUploadField
+          <ImageUpload
             value={formdata.profile_image}
             name="profile_image"
             onChange={handleChange}

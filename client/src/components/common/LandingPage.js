@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import { Grid, Container, Typography, makeStyles, Button, Box } from '@material-ui/core'
+import { Grid, Container, Typography, makeStyles, Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import MeetingRoom from '@material-ui/icons/MeetingRoom'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
@@ -45,42 +45,31 @@ function LandingPage() {
   const classes = useStyles()
 
   return (
-    <Container fixed >
+
+    <Container>
+
       <Grid container
-        justify="space-evenly"
+        justify="space-around"
         alignItems="center"
         className={classes.root}
+
       >
-        <BugReportRoundedIcon className={classes.firstBug} />
-        <BugReportRoundedIcon className={classes.secondBug} />
-        <Grid item xs={12} sm={6} >
+
+        <Grid item >
           <Grid container
             direction="column"
-            spacing={3}
           >
-            <Grid item>
-              <Grid container
-                alignItems="baseline"
+            <Grid item alignItems="baseline" >
 
-              >
-                <Grid item>
-                  <Typography
-                    variant="h2"
-                  >
-                    the
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    variant="h1"
-                    gutterBottom="true"
-                    className={classes.logo}
-                  >
-                    BugBuster
-                  </Typography>
+              <Grid item >
+                <Typography
+                  variant="h1"
+                >
 
-                </Grid>
+                  the <span className={classes.logo}>BugBuster</span>
+                </Typography>
               </Grid>
+
             </Grid>
             <Grid item>
               <Typography variant="h3">
@@ -91,9 +80,11 @@ function LandingPage() {
 
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid>
           <Grid container
             justify="space-evenly"
+            direction="row"
+            spacing={3}
           >
             <Grid item>
               <Button
@@ -121,10 +112,12 @@ function LandingPage() {
             </Grid>
           </Grid>
 
-
         </Grid>
       </Grid>
+      <BugReportRoundedIcon className={classes.firstBug} />
+      <BugReportRoundedIcon className={classes.secondBug} />
     </Container >
+
   )
 
 }
