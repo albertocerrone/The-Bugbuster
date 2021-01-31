@@ -24,10 +24,10 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/home" component={Home} />
           <div className="">
             <SideBar />
             <NavBar />
+            <Route exact path="/home" component={Home} />
           </div>
         </Switch>
       </BrowserRouter>

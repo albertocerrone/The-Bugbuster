@@ -5,12 +5,8 @@ import { Button } from '@material-ui/core'
 const uploadUrl = process.env.REACT_APP_CLOUDINARY_URL
 const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
 
-// console.log('upload',uploadUrl)
-// console.log(uploadPreset)
-
-// 
-function ImageUpload( { value, name, onChange } ) {
-  const [ hover, setHover] = React.useState(false)
+function ImageUpload({ value, name, onChange, button }) {
+  const [hover, setHover] = React.useState(false)
   const handleUpload = async e => {
     const data = new FormData()
     data.append('file', e.target.files[0])
@@ -29,7 +25,7 @@ function ImageUpload( { value, name, onChange } ) {
     <>
       <div className="profile_preview">
         <div>
-          <img src={value} style={{ width: '50%', height: 'auto' }} />
+          <img src={value} style={{ width: '30%', height: 'auto' }} />
         </div>
       </div>
       <div>
