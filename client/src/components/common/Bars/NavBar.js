@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { useHistory, Link as RouterLink } from 'react-router-dom'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import {
@@ -9,17 +9,26 @@ import {
   Hidden,
   IconButton,
   Toolbar,
-  makeStyles
+  makeStyles,
+  Typography
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined'
 import InputIcon from '@material-ui/icons/Input'
+import { logout } from '../../../lib/auth'
 
 const useStyles = makeStyles(() => ({
   root: {},
   avatar: {
     width: 60,
     height: 60
+  },
+  logo: {
+    fontSize: 45,
+    fontWeight: 700,
+    background: 'linear-gradient(96.21deg, #E751D8 39.3%, #17D5EF 90.17%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent'
   }
 }))
 
@@ -29,8 +38,14 @@ const NavBar = ({
   ...rest
 }) => {
   const classes = useStyles()
+  const history = useHistory()
+
   const [notifications] = useState([])
 
+  const handleLogout = () => {
+    logout()
+    history.push('/')
+  }
   return (
     <AppBar
       className={clsx(classes.root, className)}
@@ -39,7 +54,13 @@ const NavBar = ({
     >
       <Toolbar>
         <RouterLink to="/home">
-          {/* <Logo /> */}
+          <Typography
+            color="textSecondary"
+            gutterBottom
+            variant="h4"
+          >
+            the <span className={classes.logo}>BugBuster</span>
+          </Typography>
         </RouterLink>
         <Box flexGrow={1} />
         <Hidden mdDown>
@@ -52,7 +73,7 @@ const NavBar = ({
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={handleLogout}>
             <InputIcon />
           </IconButton>
         </Hidden>

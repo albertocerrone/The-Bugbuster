@@ -66,8 +66,8 @@ const useStyles = makeStyles(() => ({
   },
   avatar: {
     cursor: 'pointer',
-    width: 64,
-    height: 64
+    width: 74,
+    height: 74
   }
 }))
 
@@ -90,6 +90,20 @@ const SideBar = ({ onMobileClose, openMobile, user }) => {
       display="flex"
       flexDirection="column"
     >
+      <Box p={2}>
+        <List>
+          {items.map((item) => (
+            <SideItem
+              href={item.href}
+              key={item.title}
+              title={item.title}
+              icon={item.icon}
+            />
+          ))}
+        </List>
+      </Box>
+      <Box flexGrow={1} />
+      <Divider />
       <Box
         alignItems="center"
         display="flex"
@@ -117,20 +131,6 @@ const SideBar = ({ onMobileClose, openMobile, user }) => {
           {user.username}
         </Typography>
       </Box>
-      <Divider />
-      <Box p={2}>
-        <List>
-          {items.map((item) => (
-            <SideItem
-              href={item.href}
-              key={item.title}
-              title={item.title}
-              icon={item.icon}
-            />
-          ))}
-        </List>
-      </Box>
-      <Box flexGrow={1} />
     </Box>
 
   )
