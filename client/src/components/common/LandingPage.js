@@ -116,7 +116,7 @@ function LandingPage() {
       </Grid>
       <BugReportRoundedIcon className={classes.firstBug} />
       <BugReportRoundedIcon className={classes.secondBug} />
-    </Container >
+    </Container>
 
   )
 

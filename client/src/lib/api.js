@@ -4,7 +4,7 @@ import { getToken } from './auth'
 //*Base URL for all
 const baseUrl = '/api'
 
-//*Sets a users tokem into the request header  
+//*Sets a users token into the request header  
 function headers() {
   return {
     headers: { Authorization: `Bearer ${getToken()}` }

@@ -6,8 +6,7 @@ import GlobalStyles from './styles/GlobalStyles'
 import LandingPage from './components/common/LandingPage'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
-import SideBar from './components/common/SideBar'
-import NavBar from './components/common/NavBar'
+import Bars from './components/common/Bars'
 import Home from './components/common/Home'
 
 import theme from './styles/theme/index'
@@ -25,8 +24,9 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <div className="">
-            <SideBar />
-            <NavBar />
+            <Bars />
+
+            <Route exact path="/home" component={Home} />
           </div>
         </Switch>
       </BrowserRouter>

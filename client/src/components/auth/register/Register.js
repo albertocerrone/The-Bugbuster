@@ -66,44 +66,98 @@ function Register() {
   return (
     <Container fixed
       className={classes.root}>
-
       <Box
         display="flex"
         flexDirection="column"
         height="100%"
         justifyContent="center" >
         <Container maxWidth="sm">
-
           <form onSubmit={handleSubmit} className={classes.form}>
-            <Box mb={3}>
+            <Box mb={3} style={{ marginLeft: '20%' }}>
               <Typography
                 color="textSecondary"
                 gutterBottom
-                variant="body2"
+                variant="h3"
               >
-                Use your email to create new account
+                the <span className={classes.logo}>BugBuster</span>
               </Typography>
             </Box>
             <TextField
+              error={Boolean(errors.username)}
               fullWidth
-              helperText={errors.password}
+              helperText={errors.username}
               label="Username"
               margin="normal"
               name="username"
               onChange={handleChange}
               value={formdata.username}
               variant="outlined"
-
+            />
+            <TextField
+              error={Boolean(errors.firstName)}
+              fullWidth
+              helperText={errors.firstName}
+              label="First Name"
+              margin="normal"
+              name="firstName"
+              onChange={handleChange}
+              value={formdata.firstName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(errors.lastName)}
+              fullWidth
+              helperText={errors.lastName}
+              label="Last Name"
+              margin="normal"
+              name="lastName"
+              onChange={handleChange}
+              value={formdata.lastName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(errors.email)}
+              fullWidth
+              helperText={errors.email}
+              label="E-Mail"
+              margin="normal"
+              name="email"
+              onChange={handleChange}
+              value={formdata.email}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(errors.password)}
+              fullWidth
+              helperText={errors.password}
+              label="Password"
+              margin="normal"
+              name="password"
+              onChange={handleChange}
+              value={formdata.password}
+              variant="outlined"
+              type="password"
+            />
+            <TextField
+              error={Boolean(errors.passwordConfirmation)}
+              fullWidth
+              helperText={errors.passwordConfirmation}
+              label="Password Confirmation"
+              margin="normal"
+              name="passwordConfirmation"
+              onChange={handleChange}
+              value={formdata.passwordConfirmation}
+              variant="outlined"
+              type="password"
             />
             <div>
-              <label>Username</label>
-              <input
-                placeholder="username"
-                name="username"
+              <ImageUpload
+                value={formdata.profile_image}
+                name="profile_image"
+                button='Upload Profile Picture'
                 onChange={handleChange}
-
               />
-              {/* {errors.username === undefined ? null : <p>{errors.username[0]}</p>} */}
+              <p>{errors.profileImage}</p>
             </div>
             <Box my={2}>
               <Button
@@ -131,96 +185,7 @@ function Register() {
               </Link>
             </Typography>
           </form>
-
-
-
-
-
-
-
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Username</label>
-              <input
-                placeholder="username"
-                name="username"
-                onChange={handleChange}
-                // onChange={()=>{
-                //   handleChange()
-                //   // handleValidation()
-                // }}
-                value={formdata.username}
-              />
-              {/* {errors.username === undefined ? null : <p>{errors.username[0]}</p>} */}
-            </div>
-            <div>
-              <label>Email</label>
-              <input
-                placeholder="email"
-                name="email"
-                onChange={handleChange}
-                value={formdata.email}
-              />
-            </div>
-            <div>
-              <label>Password</label>
-              <input
-                type="password"
-                placeholder="password"
-                name="password"
-                onChange={handleChange}
-                value={formdata.password}
-              />
-            </div>
-            <div>
-              <label>Password Confirmation</label>
-              <input
-                type="password"
-                placeholder="passwordConfirmation"
-                name="password_confirmation"
-                onChange={handleChange}
-                value={formdata.password_confirmation}
-              />
-            </div>
-            <div>
-              <label>Profile Image</label>
-              <ImageUpload
-                value={formdata.profile_image}
-                name="profile_image"
-                onChange={handleChange}
-              />
-              <input
-                value={formdata.profile_image}
-                name="profile_image"
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label>First Name</label>
-              <input
-                placeholder="first name"
-                name="first_name"
-                onChange={handleChange}
-                value={formdata.first_name}
-              />
-            </div>
-            <div>
-              <label>Last Name</label>
-              <input
-                placeholder="last name"
-                name="last_name"
-                onChange={handleChange}
-                value={formdata.last_name}
-              />
-            </div>
-            <div className="button_wrapper flexend">
-              <button type="submit">
-                Register
-              </button>
-            </div>
-          </form>
         </Container>
-
       </Box>
     </Container>
   )

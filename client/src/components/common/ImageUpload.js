@@ -29,7 +29,7 @@ function ImageUpload( { value, name, onChange } ) {
     <>
       <div className="profile_preview">
         <div>
-          <img src={value} style={{ width: '50%', height: 'auto' }} />
+          <img src={value} style={{ width: '30%', height: 'auto' }} />
         </div>
       </div>
       <div>
