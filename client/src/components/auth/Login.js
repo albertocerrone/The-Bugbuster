@@ -1,16 +1,16 @@
 import React from 'react'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
-
+import { loginUser } from '../../lib/api'
+import { setToken } from '../../lib/auth'
 
 function Login() {
 
+  const history = useHistory()
   const [formdata, setFormdata] = React.useState({
     email: '',
     password: ''
   })
-  
-  const history = useHistory()
+
 
   const handleChange = event => {
     setFormdata({ ...formdata, [event.target.name]: event.target.value })
@@ -18,8 +18,6 @@ function Login() {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    // console.log('etarget',e.target)
-
     try {
       const { data } = await loginUser(formdata)
 
@@ -30,11 +28,10 @@ function Login() {
         console.log(data.message)
         return
       }
-      setTimeout(()=>{
+      setTimeout(() => {
         setToken(data.token)
-        history.push('/')
-        console.log('data.token: ', data.token)
-      },500)
+        history.push('/home')
+      }, 500)
 
     } catch (err) {
       console.log('err.response.data: ', err.response.data)
@@ -45,14 +42,6 @@ function Login() {
     }
 
     console.log('submitting', formdata)
-  }
-
-  function loginUser(formdata) {
-    return axios.post('/api/auth/login/ ', formdata)
-  }
-
-  function setToken(token) {
-    window.localStorage.setItem('token', token)
   }
 
   return (

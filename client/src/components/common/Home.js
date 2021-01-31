@@ -16,24 +16,23 @@ function Home() {
 
 
   React.useEffect(() => {
-    if (!isAuthenticated) return 
+    if (!isAuthenticated) return
     const getData = async () => {
-      try { 
+      try {
         const { data } = await getProfile()
         console.log(data)
         setUserData(data)
       } catch (err) {
-        console.log(err.response.status)
         if (err.response.status === 401 || err.response.status === 403) {
           setUnauthorized(true)
           return
-        } 
+        }
       }
     }
     getData()
   }, [pathname])
 
-  
+
   const handleLogout = () => {
     logout()
     history.push('/')
@@ -50,7 +49,7 @@ function Home() {
         </div>
       )
     } else {
-      <LoadingScreen/>
+      <LoadingScreen />
     }
   }
 
@@ -58,7 +57,7 @@ function Home() {
 
   return (
     <>
-      {userData !== null ? 
+      {userData !== null ?
         <>
           <div>
             Home Page
@@ -67,7 +66,7 @@ function Home() {
             <button onClick={handleLogout} >
               {/* <img src={} alt="" /> */}
               Log out
-            </button>  
+            </button>
           </div>
         </>
         :
