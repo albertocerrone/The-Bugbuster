@@ -32,7 +32,7 @@ function Login() {
       }
       setTimeout(()=>{
         setToken(data.token)
-        history.push('/')
+        history.push('/home')
         console.log('data.token: ', data.token)
       },500)
 
