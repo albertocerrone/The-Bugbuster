@@ -4,10 +4,6 @@ import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import GlobalStyles from './styles/GlobalStyles'
 
 import LandingPage from './components/common/LandingPage'
-<<<<<<< HEAD
-// import Register from './components/auth/register/Register'
-=======
->>>>>>> b67cfee5a2e690480addfee76123d72cd7cbbf57
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import SideBar from './components/common/SideBar'
