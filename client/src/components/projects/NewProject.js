@@ -52,10 +52,9 @@ const DialogActions = withStyles((theme) => ({
 function NewProject() {
 
 
-
   return (
     <div>
-      <Dialog aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog aria-labelledby="customized-dialog-title" open={open} >
         <DialogTitle id="customized-dialog-title" >
           Modal title
         </DialogTitle>

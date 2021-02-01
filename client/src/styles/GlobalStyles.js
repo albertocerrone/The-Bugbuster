@@ -11,7 +11,9 @@ const useStyles = makeStyles(() => createStyles({
       '-webkit-font-smoothing': 'antialiased',
       '-moz-osx-font-smoothing': 'grayscale',
       height: '100%',
-      width: '100%'
+      width: '100%',
+      overflow: 'hidden'
+
     },
     body: {
       backgroundColor: '#232430',
