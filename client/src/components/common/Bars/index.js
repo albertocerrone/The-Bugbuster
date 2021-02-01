@@ -67,13 +67,7 @@ const Bars = () => {
               openMobile={isMobileNavOpen}
               user={userData}
             />
-            <div className={classes.wrapper}>
-              <div className={classes.contentContainer}>
-                <div className={classes.content}>
-                  {/* <Outlet /> */}
-                </div>
-              </div>
-            </div>
+
           </div>
         </>
       }

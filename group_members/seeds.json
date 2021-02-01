@@ -1,0 +1,47 @@
+[
+  {
+    "model": "group_members.groupmember",
+    "pk": 1,
+    "fields": {
+      "role": "Developer",
+      "user": 3,
+      "project": 1
+    }
+  },
+  {
+    "model": "group_members.groupmember",
+    "pk": 2,
+    "fields": {
+      "role": "Manager",
+      "user": 5,
+      "project": 1
+    }
+  },
+  {
+    "model": "group_members.groupmember",
+    "pk": 3,
+    "fields": {
+      "role": "Developer",
+      "user": 1,
+      "project": 2
+    }
+  },
+  {
+    "model": "group_members.groupmember",
+    "pk": 4,
+    "fields": {
+      "role": "Developer",
+      "user": 3,
+      "project": 2
+    }
+  },
+  {
+    "model": "group_members.groupmember",
+    "pk": 5,
+    "fields": {
+      "role": "Manager",
+      "user": 1,
+      "project": 1
+    }
+  }
+]

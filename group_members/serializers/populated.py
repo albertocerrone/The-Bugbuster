@@ -13,3 +13,7 @@ class PopulatedUsersMemberSerializer(GroupMemberSerializer):
     """ This Serializer gives back only the user and not the project """
 
     user = NestedUserSerializer()
+
+
+class PopulatedProjectRoleSerializer(GroupMemberSerializer):
+    project = ProjectSerializer()

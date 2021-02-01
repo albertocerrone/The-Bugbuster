@@ -9,7 +9,7 @@ const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
 // console.log(uploadPreset)
 
 // 
-function ImageUpload( { value, name, onChange } ) {
+function ImageUpload({ value, name, onChange, buttonText }) {
   // const [ hover, setHover] = React.useState(false)
   const handleUpload = async e => {
     const data = new FormData()
@@ -33,9 +33,9 @@ function ImageUpload( { value, name, onChange } ) {
         </div>
       </div>
       <div>
-        <div 
-          // onMouseEnter={handleHover} 
-          // onMouseLeave={handleHover}
+        <div
+        // onMouseEnter={handleHover} 
+        // onMouseLeave={handleHover}
         >
           <input
             id="contained-button-file"
@@ -47,7 +47,7 @@ function ImageUpload( { value, name, onChange } ) {
           />
           <label htmlFor="contained-button-file">
             <Button variant="contained" color="secondary" component="span">
-              button
+              {buttonText}
             </Button>
           </label>
         </div>
