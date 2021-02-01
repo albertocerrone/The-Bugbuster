@@ -73,7 +73,11 @@ const NavBar = ({
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton color="inherit" onClick={handleLogout}>
+          <IconButton
+            color="inherit"
+            onClick={handleLogout}
+
+          >
             <InputIcon />
           </IconButton>
         </Hidden>
