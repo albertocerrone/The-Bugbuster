@@ -5,6 +5,7 @@ import { getProfile } from '../../lib/api'
 import { useHistory } from 'react-router-dom'
 import ImageUpload from '../common/ImageUpload'
 import { updateUser } from '../../lib/api'
+import useForm from '../../utils/useForm'
 
 import {
   Box,
@@ -41,36 +42,45 @@ function AccountPage() {
   const history = useHistory()
   // const [error, setError] = React.useState(false)
   const [unauthorized, setUnauthorized] = React.useState(false)
-  const [formdata, setFormdata] = React.useState({
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-    profileImage: '',
-    firstName: '',
-    lastName: ''
+  const { formdata, errors, handleChange, setFormdata, setErrors } = useForm({
+    username: [''],
+    email: [''],
+    password: [''],
+    passwordConfirmation: [''],
+    profileImage: [''],
+    firstName: [''],
+    lastName: ['']
   })
-  const [errors, setErrors] = React.useState({
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-    profileImage: '',
-    firstName: '',
-    lastName: ''
-  })
+  // const [formdata, setFormdata] = React.useState({
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  //   passwordConfirmation: '',
+  //   profileImage: '',
+  //   firstName: '',
+  //   lastName: ''
+  // })
+  // const [errors, setErrors] = React.useState({
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  //   passwordConfirmation: '',
+  //   profileImage: '',
+  //   firstName: '',
+  //   lastName: ''
+  // })
 
-  const handleFocus = () => {
-    setError(false)
-  }
+  // const handleFocus = () => {
+  //   setError(false)
+  // }
 
   React.useEffect(() => {
     if (!isAuthenticated) return
     const getData = async () => {
       try {
         const { data } = await getProfile()
-        console.log(data)
         setFormdata(data)
+        setErrors(false)
         // console.log(`userdata: ${userdata}`)
       } catch (err) {
         console.log(err)
@@ -83,11 +93,11 @@ function AccountPage() {
       }
     }
     getData()
-  }, [])
+  }, [setFormdata])
 
-  const handleChange = (e) => {
-    setFormdata({ ...formdata, [e.target.name]: e.target.value })
-  }
+  // const handleChange = (e) => {
+  //   setFormdata({ ...formdata, [e.target.name]: e.target.value })
+  // }
 
   console.log(formdata)
 
@@ -102,20 +112,23 @@ function AccountPage() {
         history.push('/home')
       }, 500)
     } catch (err) {
+      console.log('err.response.data: ', err.response.data)
+      setErrors(err.response.data)
+
       // setError(true)
-      const data = err.response.data
-      const errarr = {
-        username: data.username ? data.username[0] : '',
-        email: data.email ? data.email[0] : '',
-        password: data.password ? data.password[0] : '',
-        passwordConfirmation: data.passwordConfirmation ? data.passwordConfirmation[0] : '',
-        profileImage: data.profileImage ? data.profileImage[0] : '',
-        firstName: data.firstName ? data.firstName[0] : '',
-        lastName: data.lastName ? data.lastName[0] : ''
-      }
-      if (errarr) {
-        setErrors(errarr)
-      }
+      // const data = err.response.data
+      // const errarr = {
+      //   username: data.username ? data.username[0] : '',
+      //   email: data.email ? data.email[0] : '',
+      //   password: data.password ? data.password[0] : '',
+      //   passwordConfirmation: data.passwordConfirmation ? data.passwordConfirmation[0] : '',
+      //   profileImage: data.profileImage ? data.profileImage[0] : '',
+      //   firstName: data.firstName ? data.firstName[0] : '',
+      //   lastName: data.lastName ? data.lastName[0] : ''
+      // }
+      // if (errarr) {
+      //   setErrors(errarr)
+      // }
     }
   }
 
@@ -167,30 +180,26 @@ function AccountPage() {
                 margin="normal"
                 name="username"
                 onChange={handleChange}
-                onFocus={handleFocus}
+                // onFocus={handleFocus}
                 value={formdata.username}
                 variant="outlined"
               />
               <TextField
-                // error={error}
+                error={Boolean(errors.firstName)}
                 fullWidth
-                // onFocus={handleFocus}
                 helperText={errors.firstName}
                 label="First Name"
                 margin="normal"
-                defaultValue={formdata.firstName}
                 name="firstName"
                 onChange={handleChange}
                 value={formdata.firstName}
                 variant="outlined"
               />
               <TextField
-                // error={error}
+                error={Boolean(errors.lastName)}
                 fullWidth
                 helperText={errors.lastName}
                 label="Last Name"
-                // onFocus={handleFocus}
-                defaultValue={formdata.lastName}
                 margin="normal"
                 name="lastName"
                 onChange={handleChange}
@@ -198,12 +207,10 @@ function AccountPage() {
                 variant="outlined"
               />
               <TextField
-                // error={error}
-                // onFocus={handleFocus}
+                error={Boolean(errors.email)}
                 fullWidth
                 helperText={errors.email}
                 label="E-Mail"
-                defaultValue={formdata.email}
                 margin="normal"
                 name="email"
                 onChange={handleChange}
@@ -211,9 +218,8 @@ function AccountPage() {
                 variant="outlined"
               />
               <TextField
-                // error={error}
+                error={Boolean(errors.password)}
                 fullWidth
-                // onFocus={handleFocus}
                 helperText={errors.password}
                 label="Password"
                 margin="normal"
@@ -224,9 +230,8 @@ function AccountPage() {
                 type="password"
               />
               <TextField
-                // error={error}
+                error={Boolean(errors.passwordConfirmation)}
                 fullWidth
-                // onFocus={handleFocus}
                 helperText={errors.passwordConfirmation}
                 label="Password Confirmation"
                 margin="normal"
