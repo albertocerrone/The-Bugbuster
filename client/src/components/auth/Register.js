@@ -7,9 +7,7 @@ import { registerUser } from '../../lib/api'
 import {
   Box,
   Button,
-  Checkbox,
   Container,
-  FormHelperText,
   Link,
   TextField,
   Typography,
