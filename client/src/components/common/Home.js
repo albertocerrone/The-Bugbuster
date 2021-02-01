@@ -31,9 +31,6 @@ function Home() {
   }, [pathname])
 
 
-
-
-
   function checkStatus() {
     if (unauthorized) {
       return (
@@ -56,10 +53,9 @@ function Home() {
             Home Page
           </div>
           <div>
-            <button  >
-              {/* <img src={} alt="" /> */}
-              Log out
-            </button>
+            <Link to='/create-project'>
+              Create Project
+            </Link>
           </div>
         </>
         :
