@@ -37,10 +37,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
 
-  const history = useHistory()
   const [error, setError] = React.useState(false)
+  const history = useHistory()
   const [formdata, setFormdata] = React.useState({
     email: '',
+    password: ''
+  })
+  const [errors, setErrors] = React.useState({
     password: ''
   })
 
@@ -52,13 +55,19 @@ function Login() {
     try {
       e.preventDefault()
       const { data } = await loginUser(formdata)
-      console.log('submitted')
-      console.log(data)
       setToken(data.token)
       history.push('/home')
     } catch (err) {
-      console.log(err.response.data.detail)
       setError(true)
+      const data = err.response.data
+      console.log(data)
+      const errarr = {
+        password: data.detail ? data.detail : ''
+      }
+      if (errarr) {
+        setErrors(errarr)
+        console.log(errarr)
+      }
     }
   }
   const handleFocus = () => {
@@ -88,7 +97,7 @@ function Login() {
             <TextField
               error={error}
               fullWidth
-              helperText={error ? 'Email maybe wrong' : ''}
+              // helperText={error ? 'Email maybe wrong' : ''}
               label="E-Mail"
               margin="normal"
               name="email"
@@ -101,7 +110,7 @@ function Login() {
             <TextField
               error={error}
               fullWidth
-              helperText={error ? 'Password maybe wrong' : ''}
+              helperText={errors.password}
               label="Password"
               margin="normal"
               name="password"

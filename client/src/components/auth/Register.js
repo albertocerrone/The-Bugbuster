@@ -4,6 +4,7 @@ import { useHistory, Link as RouterLink } from 'react-router-dom'
 import ImageUpload from '../common/ImageUpload'
 import { registerUser } from '../../lib/api'
 
+
 import {
   Box,
   Button,
@@ -87,15 +88,14 @@ function Register() {
       }
       if (errarr) {
         setErrors(errarr)
-      } else {
-        // setErrors('')
       }
-      console.log('err.response.data: ', data)
+      // else {
+      // setErrors('')
     }
   }
+  
 
   const classes = useStyles()
-
 
   return (
     <Container fixed

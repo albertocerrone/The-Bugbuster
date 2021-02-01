@@ -17,6 +17,9 @@ import { Pagination } from '@material-ui/lab'
 import ProjectCard from './ProjectCard'
 
 const useStyles = makeStyles((theme) => ({
+  html: {
+    overflow: 'hidden' 
+  },
   root: {
     minHeight: '100%',
     paddingBottom: theme.spacing(3),
@@ -31,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
   const [userRole, setUserRole] = React.useState(null)
   const [unauthorized, setUnauthorized] = React.useState(false)
-  const { pathname } = useLocation()
+  console.log(unauthorized)
 
 
   React.useEffect(() => {
@@ -39,7 +42,7 @@ function Home() {
     const getData = async () => {
       try {
         const { data } = await getProfile()
-        console.log(data.group)
+        console.log(data)
         setUserRole(data.group)
       } catch (err) {
         if (err.response.status === 401 || err.response.status === 403) {

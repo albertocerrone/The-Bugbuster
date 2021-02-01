@@ -54,7 +54,6 @@ class LoginView(APIView):
 
 class ProfileView(APIView):
 
-<<<<<<< HEAD
     def get_user(self, pk):
         """ returns user from db by its pk(id) or responds 404 not found """
         try:
@@ -63,9 +62,6 @@ class ProfileView(APIView):
             raise NotFound()
 
     permission_classes = (IsAuthenticated, )
-=======
-    permission_classes = (IsAuthenticated,)
->>>>>>> 1cc5c8fd790512330319fd32474119ed51e435a0
 
     def get(self, request):
         user = User.objects.get(pk=request.user.id)
@@ -85,7 +81,7 @@ class ProfileView(APIView):
         )
 
 class ProfileListView(APIView):
-  
+
     def get(self, _request):
         users = User.objects.all()
         serialized_user = UserSerializer(users, many=True)
@@ -103,5 +99,4 @@ class ProfileDetailView(APIView):
         user = self.get_user(pk=pk)
         serialized_user = UserSerializer(user)
         return Response(serialized_user.data, status=status.HTTP_200_OK)
-
 
