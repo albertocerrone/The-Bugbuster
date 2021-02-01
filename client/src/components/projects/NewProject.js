@@ -1,14 +1,36 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
-import MuiDialogTitle from '@material-ui/core/DialogTitle'
-import MuiDialogContent from '@material-ui/core/DialogContent'
-import MuiDialogActions from '@material-ui/core/DialogActions'
-import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
-import Typography from '@material-ui/core/Typography'
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  makeStyles
+} from '@material-ui/core'
 
+import MuiDialogContent from '@material-ui/core/DialogContent'
+import Dialog from '@material-ui/core/Dialog'
+import { createProject } from '../../lib/api'
+import { useHistory } from 'react-router-dom'
+import { DatePicker } from '@material-ui/pickers'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100%',
+    paddingBottom: theme.spacing(3),
+    paddingTop: theme.spacing(3)
+  },
+  form: {
+    background: 'rgba(0, 0, 0, 0.5)',
+    padding: '5%',
+    borderRadius: '45px'
+  },
+  textField: {
+    border: '1px solid rgba(225, 225, 225, 0.3)',
+    borderRadius: theme.shape.borderRadius
+  }
+}))
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -22,19 +44,7 @@ const styles = (theme) => ({
   }
 })
 
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  )
-})
+
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -42,44 +52,127 @@ const DialogContent = withStyles((theme) => ({
   }
 }))(MuiDialogContent)
 
-const DialogActions = withStyles((theme) => ({
+const CssTextField = withStyles({
   root: {
-    margin: 0,
-    padding: theme.spacing(1)
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'yellow'
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white'
+      }
+    }
   }
-}))(MuiDialogActions)
+})(TextField)
 
 function NewProject() {
+  const classes = useStyles()
+  const history = useHistory()
+
+  const [formdata, setFormdata] = React.useState({
+    name: '',
+    description: '',
+    deadline: ''
+  })
+  const [error, setError] = React.useState({
+    name: '',
+    description: '',
+    deadline: ''
+  })
+
+  const handleChange = (e) => {
+    setFormdata({ ...formdata, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const { data } = await createProject(formdata)
+      console.log({ data })
+      history.push('/group')
+    } catch (err) {
+      console.log(err.response.data)
+      setError(err.response.data)
+    }
+  }
+
 
 
   return (
-    <div>
-      <Dialog aria-labelledby="customized-dialog-title" open={open} >
-        <DialogTitle id="customized-dialog-title" >
-          Modal title
-        </DialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-            lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-            auctor fringilla.
-          </Typography>
+    <>
+      <Dialog
+        aria-labelledby="customized-dialog-title"
+        open={open}
+        PaperProps={{
+          style: {
+            backgroundColor: 'transparent',
+            boxShadow: 'none'
+          }
+        }}
+      >
+
+        <DialogContent >
+          <form onSubmit={handleSubmit} className={classes.form}>
+            <Typography
+              align="center"
+              color="textPrimary"
+              variant="h2"
+            >
+              New Project
+            </Typography>
+            <CssTextField
+              error={Boolean(error.name)}
+              fullWidth
+              helperText={error.name}
+              label="Project Name"
+              margin="normal"
+              name="name"
+              onChange={handleChange}
+              value={formdata.name}
+              variant="outlined"
+
+            />
+            <CssTextField
+              error={Boolean(error.description)}
+              fullWidth
+              helperText={error.description}
+              label="Project Description"
+              margin="normal"
+              name="description"
+              onChange={handleChange}
+              value={formdata.description}
+              variant="outlined"
+              multiline
+              rows={3}
+            />
+            <CssTextField
+              error={Boolean(error.deadline)}
+              fullWidth
+              helperText={error.deadline}
+              label="Deadline YYYY-MM-DD"
+              type="text"
+              margin="normal"
+              name="deadline"
+              onChange={handleChange}
+              value={formdata.deadline}
+              variant="outlined"
+              color="primary"
+            />
+            <Box my={2}>
+              <Button
+                color="primary"
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+              >
+                Create Project
+              </Button>
+            </Box>
+          </form>
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus color="primary">
-            Save changes
-          </Button>
-        </DialogActions>
       </Dialog>
-    </div>
+    </>
   )
 }
 

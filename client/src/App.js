@@ -4,6 +4,7 @@ import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import GlobalStyles from './styles/GlobalStyles'
 import { makeStyles } from '@material-ui/core'
 
+
 import LandingPage from './components/common/LandingPage'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
@@ -46,6 +47,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalStyles />
+
+
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LandingPage} />
@@ -66,6 +69,7 @@ function App() {
           </div>
         </Switch>
       </BrowserRouter>
+
     </ThemeProvider>
   )
 }
