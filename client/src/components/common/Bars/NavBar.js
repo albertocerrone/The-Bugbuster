@@ -18,7 +18,11 @@ import InputIcon from '@material-ui/icons/Input'
 import { logout } from '../../../lib/auth'
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: {
+    backdropFilter: 'blur(30px)',
+    background: 'rgba(23, 213, 239, 0.8)'
+
+  },
   avatar: {
     width: 60,
     height: 60
@@ -63,6 +67,13 @@ const NavBar = ({
           </Typography>
         </RouterLink>
         <Box flexGrow={1} />
+        <IconButton
+          color="inherit"
+          onClick={handleLogout}
+
+        >
+          <InputIcon />
+        </IconButton>
         <Hidden mdDown>
           <IconButton color="inherit">
             <Badge
@@ -73,13 +84,7 @@ const NavBar = ({
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton
-            color="inherit"
-            onClick={handleLogout}
 
-          >
-            <InputIcon />
-          </IconButton>
         </Hidden>
         <Hidden lgUp>
           <IconButton

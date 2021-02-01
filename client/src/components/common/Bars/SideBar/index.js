@@ -23,7 +23,7 @@ import SideItem from './SideItem'
 
 const items = [
   {
-    href: '/home',
+    href: '/projects',
     icon: AssignmentIcon,
     title: 'Projects'
   },
