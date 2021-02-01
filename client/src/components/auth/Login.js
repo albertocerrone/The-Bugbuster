@@ -55,7 +55,7 @@ function Login() {
       console.log('submitted')
       console.log(data)
       setToken(data.token)
-      history.push('/projects')
+      history.push('/home')
     } catch (err) {
       console.log(err.response.data.detail)
       setError(true)

@@ -188,7 +188,7 @@ function Register() {
               <ImageUpload
                 value={formdata.profile_image}
                 name="profile_image"
-                button='Upload Profile Picture'
+                buttonText='Upload Profile Picture'
                 onChange={handleChange}
               />
               <p>{errors.profileImage}</p>
