@@ -3,8 +3,8 @@ from django.db import models
 
 class GroupMember(models.Model):
 
-    manager = "manager"
-    developer = "developer"
+    manager = "Manager"
+    developer = "Developer"
     roles = [
         (manager, "Manager"),
         (developer, "Developer"),

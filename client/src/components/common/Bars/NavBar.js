@@ -53,8 +53,9 @@ const NavBar = ({
   return (
     <AppBar
       className={clsx(classes.root, className)}
-      elevation={0}
+      elevation={1}
       {...rest}
+      position="fixed"
     >
       <Toolbar>
         <RouterLink to="/home">

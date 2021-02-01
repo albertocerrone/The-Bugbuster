@@ -51,7 +51,7 @@ const items = [
   }
 ]
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   mobileDrawer: {
     width: 256,
     background: 'rgba(0, 0, 0, 0.1)',
@@ -68,7 +68,9 @@ const useStyles = makeStyles(() => ({
     cursor: 'pointer',
     width: 74,
     height: 74
-  }
+  },
+  toolbar: theme.mixins.toolbar
+
 }))
 
 const SideBar = ({ onMobileClose, openMobile, user }) => {
@@ -155,6 +157,8 @@ const SideBar = ({ onMobileClose, openMobile, user }) => {
           classes={{ paper: classes.desktopDrawer }}
           open
           variant="persistent"
+          className={classes.toolbar}
+          position="fixed"
         >
           {content}
         </Drawer>
