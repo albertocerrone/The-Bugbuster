@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, NotFound
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from django.contrib.auth import get_user_model
@@ -12,7 +12,6 @@ from .serializers.common import NestedUserSerializer, UserSerializer
 from .serializers.populated import PopulatedUserSerializer
 
 User = get_user_model()
-
 
 class RegisterView(APIView):
     """ Controller for post request to /auth/register """
@@ -55,9 +54,54 @@ class LoginView(APIView):
 
 class ProfileView(APIView):
 
+<<<<<<< HEAD
+    def get_user(self, pk):
+        """ returns user from db by its pk(id) or responds 404 not found """
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise NotFound()
+
+    permission_classes = (IsAuthenticated, )
+=======
     permission_classes = (IsAuthenticated,)
+>>>>>>> 1cc5c8fd790512330319fd32474119ed51e435a0
 
     def get(self, request):
         user = User.objects.get(pk=request.user.id)
         serialized_user = PopulatedUserSerializer(user)
         return Response(serialized_user.data, status=status.HTTP_200_OK)
+
+    def put(self, request):
+        user_to_update = self.get_user(pk=request.user.id)
+        if user_to_update.id != request.user.id:
+            raise PermissionDenied()
+        updated_user = UserSerializer(user_to_update, data=request.data)
+        if updated_user.is_valid():
+            updated_user.save()
+            return Response(updated_user.data, status=status.HTTP_202_ACCEPTED)
+        return Response(
+            updated_user.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY
+        )
+
+class ProfileListView(APIView):
+  
+    def get(self, _request):
+        users = User.objects.all()
+        serialized_user = UserSerializer(users, many=True)
+        return Response(serialized_user.data, status=status.HTTP_200_OK)
+
+class ProfileDetailView(APIView):
+    def get_user(self, pk):
+        """ returns user from db by its pk(id) or responds 404 not found """
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise NotFound()
+
+    def get(self, _request, pk):
+        user = self.get_user(pk=pk)
+        serialized_user = UserSerializer(user)
+        return Response(serialized_user.data, status=status.HTTP_200_OK)
+
+
