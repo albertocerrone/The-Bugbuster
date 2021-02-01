@@ -1,0 +1,30 @@
+[
+{
+  "model": "tickets.ticket",
+  "pk": 1,
+  "fields": {
+    "title": "Remove Pink Color",
+    "types": "Update Feature",
+    "description": "I would like that pink more blu",
+    "creation_date": "2021-02-01T10:56:01.986Z",
+    "status": "New",
+    "owner": 3,
+    "project": 1,
+    "assigned_user": 1
+  }
+},
+{
+  "model": "tickets.ticket",
+  "pk": 2,
+  "fields": {
+    "title": "Best ticket ever",
+    "types": "Bug",
+    "description": "I'm the best ticket ever",
+    "creation_date": "2021-02-01T10:56:54.020Z",
+    "status": "In Progress",
+    "owner": 2,
+    "project": 1,
+    "assigned_user": 1
+  }
+}
+]

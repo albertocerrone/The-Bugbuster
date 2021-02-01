@@ -1,0 +1,12 @@
+[
+{
+  "model": "comments.comment",
+  "pk": 1,
+  "fields": {
+    "content": "I can do that",
+    "creation_date": "2021-02-01T10:57:18.259Z",
+    "owner": 3,
+    "ticket": 2
+  }
+}
+]

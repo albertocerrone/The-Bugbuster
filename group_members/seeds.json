@@ -1,0 +1,38 @@
+[
+{
+  "model": "group_members.groupmember",
+  "pk": 1,
+  "fields": {
+    "role": "developer",
+    "user": 3,
+    "project": 1
+  }
+},
+{
+  "model": "group_members.groupmember",
+  "pk": 2,
+  "fields": {
+    "role": "developer",
+    "user": 5,
+    "project": 1
+  }
+},
+{
+  "model": "group_members.groupmember",
+  "pk": 3,
+  "fields": {
+    "role": "developer",
+    "user": 1,
+    "project": 2
+  }
+},
+{
+  "model": "group_members.groupmember",
+  "pk": 4,
+  "fields": {
+    "role": "developer",
+    "user": 3,
+    "project": 2
+  }
+}
+]
