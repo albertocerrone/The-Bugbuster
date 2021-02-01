@@ -9,6 +9,8 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Bars from './components/common/Bars'
 import Home from './components/projects/Home'
+import NewProject from './components/projects/NewProject'
+
 import CreateProject from './components/common/CreateProject'
 
 import theme from './styles/theme/index'
@@ -56,6 +58,7 @@ function App() {
                 <div className={classes.content}>
                   <Route exact path="/home" component={Home} />
                   <Route exact path="/create-project" component={CreateProject} />
+                  <Route exact path="/new-project" component={NewProject} />
                 </div>
               </div>
             </div>

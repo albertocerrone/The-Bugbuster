@@ -11,8 +11,11 @@ import {
   Container,
   Grid,
   makeStyles,
-  Typography
+  Typography,
+  Tooltip,
+  Fab
 } from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add'
 import { Pagination } from '@material-ui/lab'
 import ProjectCard from './ProjectCard'
 
@@ -25,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
   productCard: {
     height: '100%'
+  },
+  absolute: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(3)
   }
 }))
 
@@ -32,7 +40,11 @@ function Home() {
   const [userRole, setUserRole] = React.useState(null)
   const [unauthorized, setUnauthorized] = React.useState(false)
   const { pathname } = useLocation()
-
+  const [open, setOpen] = React.useState(false)
+  const classes = useStyles()
+  const handleClick = () => {
+    setOpen(!open)
+  }
 
   React.useEffect(() => {
     if (!isAuthenticated) return
@@ -51,8 +63,6 @@ function Home() {
     getData()
   }, [])
 
-
-  const classes = useStyles()
   return (
     <Container
       className={classes.root}
@@ -103,6 +113,22 @@ function Home() {
               size="small"
             />
           </Box>
+          <Tooltip
+            title="Create a Project"
+            aria-label="add"
+            enterDelay={400}
+            leaveDelay={250}
+          >
+            <Fab
+              color="secondary"
+              size="large"
+              className={classes.absolute}
+              onClick={handleClick}
+              component={Link} to={'/new-project'}
+            >
+              <AddIcon />
+            </Fab>
+          </Tooltip>
         </Container>
       }
     </Container>
