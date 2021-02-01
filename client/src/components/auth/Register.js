@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useHistory, Link as RouterLink } from 'react-router-dom'
-import ImageUpload from '../imageUpload'
+import ImageUpload from '../common/ImageUpload'
 import { registerUser } from '../../lib/api'
 
 import {

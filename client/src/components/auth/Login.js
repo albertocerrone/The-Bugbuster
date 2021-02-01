@@ -3,7 +3,6 @@ import React from 'react'
 import { useHistory, Link as RouterLink } from 'react-router-dom'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
-import useForm from '../../utils/useForm'
 
 import {
   Box,
