@@ -121,8 +121,7 @@ const SideBar = ({ onMobileClose, openMobile, user }) => {
           color="textPrimary"
           variant="h5"
         >
-          {user.firstName}
-          {user.lastName}
+          {`${user.firstName} ${user.lastName}`}
         </Typography>
         <Typography
           color="textSecondary"
