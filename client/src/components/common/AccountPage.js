@@ -40,39 +40,16 @@ const useStyles = makeStyles((theme) => ({
 function AccountPage() {
 
   const history = useHistory()
-  // const [error, setError] = React.useState(false)
   const [unauthorized, setUnauthorized] = React.useState(false)
   const { formdata, errors, handleChange, setFormdata, setErrors } = useForm({
-    username: [''],
-    email: [''],
-    password: [''],
-    passwordConfirmation: [''],
-    profileImage: [''],
-    firstName: [''],
-    lastName: ['']
+    username: false,
+    email: false,
+    password: '',
+    passwordConfirmation: '',
+    profileImage: false,
+    firstName: false,
+    lastName: false
   })
-  // const [formdata, setFormdata] = React.useState({
-  //   username: '',
-  //   email: '',
-  //   password: '',
-  //   passwordConfirmation: '',
-  //   profileImage: '',
-  //   firstName: '',
-  //   lastName: ''
-  // })
-  // const [errors, setErrors] = React.useState({
-  //   username: '',
-  //   email: '',
-  //   password: '',
-  //   passwordConfirmation: '',
-  //   profileImage: '',
-  //   firstName: '',
-  //   lastName: ''
-  // })
-
-  // const handleFocus = () => {
-  //   setError(false)
-  // }
 
   React.useEffect(() => {
     if (!isAuthenticated) return
@@ -80,11 +57,8 @@ function AccountPage() {
       try {
         const { data } = await getProfile()
         setFormdata(data)
-        setErrors(false)
-        // console.log(`userdata: ${userdata}`)
       } catch (err) {
         console.log(err)
-        // setError(true)
         if (err.response.status === 401 || err.response.status === 403) {
           setUnauthorized(true)
           console.log(unauthorized)
@@ -94,10 +68,6 @@ function AccountPage() {
     }
     getData()
   }, [setFormdata])
-
-  // const handleChange = (e) => {
-  //   setFormdata({ ...formdata, [e.target.name]: e.target.value })
-  // }
 
   console.log(formdata)
 
@@ -114,21 +84,6 @@ function AccountPage() {
     } catch (err) {
       console.log('err.response.data: ', err.response.data)
       setErrors(err.response.data)
-
-      // setError(true)
-      // const data = err.response.data
-      // const errarr = {
-      //   username: data.username ? data.username[0] : '',
-      //   email: data.email ? data.email[0] : '',
-      //   password: data.password ? data.password[0] : '',
-      //   passwordConfirmation: data.passwordConfirmation ? data.passwordConfirmation[0] : '',
-      //   profileImage: data.profileImage ? data.profileImage[0] : '',
-      //   firstName: data.firstName ? data.firstName[0] : '',
-      //   lastName: data.lastName ? data.lastName[0] : ''
-      // }
-      // if (errarr) {
-      //   setErrors(errarr)
-      // }
     }
   }
 
@@ -158,20 +113,6 @@ function AccountPage() {
                   the <span className={classes.logo}>BugBuster</span>
                 </Typography>
               </Box>
-              {/* <TextField
-                error={error}
-                fullWidth
-                helperText={errors.username}
-                label="Username"
-                onFocus={handleFocus}
-                defaultValue={formdata.username}
-                margin="normal"
-                name="username"
-                type="username"
-                onChange={handleChange}
-                value={formdata.username}
-                variant="outlined"
-              /> */}
               <TextField
                 error={Boolean(errors.username)}
                 fullWidth
@@ -243,7 +184,6 @@ function AccountPage() {
               />
               <div>
                 <ImageUpload
-                  // error={error}
                   value={formdata.profile_image}
                   name="profile_image"
                   buttonText='Upload Profile Picture'
