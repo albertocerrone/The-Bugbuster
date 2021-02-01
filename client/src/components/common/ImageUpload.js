@@ -47,7 +47,7 @@ function ImageUpload( { value, name, onChange } ) {
           />
           <label htmlFor="contained-button-file">
             <Button variant="contained" color="secondary" component="span">
-              {/* {button} */}
+              button
             </Button>
           </label>
         </div>
