@@ -13,6 +13,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent'
 import Dialog from '@material-ui/core/Dialog'
 import { createProject } from '../../lib/api'
 import { useHistory } from 'react-router-dom'
+import { getProfile } from '../../lib/api'
 
 const useStyles = makeStyles((theme) => ({
   root: {

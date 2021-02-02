@@ -22,6 +22,7 @@ import {
   FormControlLabel,
   Checkbox
 } from '@material-ui/core'
+import { assignRoles } from '../../lib/api'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -46,17 +47,33 @@ const TableUsers = ({ className, users, ...rest }) => {
     role: '',
     selected: ''
   })
+  const oneRole = [{
+    'user': 4,
+    'project': 7,
+    'role': 'Manager'
+  },
+  {
+    'user': 5,
+    'project': 7,
+    'role': 'Manager'
+  },
+  {
+    'user': 6,
+    'project': 7,
+    'role': 'Manager'
+  }]
 
   console.log({ role }, { user })
 
   const handleChange = (e) => {
-
     setRole({ ...role, [e.target.name]: e.target.value })
+    const response = assignRoles(oneRole)
+    console.log(response)
   }
 
-  const handleSelectOne = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value })
-  }
+  // const handleSelectOne = (e) => {
+  //   setUser({ ...user, [e.target.name]: e.target.value })
+  // }
 
   const handleLimitChange = (event) => {
     setLimit(event.target.value)
