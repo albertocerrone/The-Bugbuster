@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
   const [userRole, setUserRole] = React.useState(null)
   const [unauthorized, setUnauthorized] = React.useState(false)
-  console.log(unauthorized)
+  // console.log(unauthorized)  
 
 
   React.useEffect(() => {
@@ -42,7 +42,7 @@ function Home() {
     const getData = async () => {
       try {
         const { data } = await getProfile()
-        console.log(data)
+        // console.log(data)
         setUserRole(data.group)
       } catch (err) {
         if (err.response.status === 401 || err.response.status === 403) {
