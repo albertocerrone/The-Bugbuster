@@ -54,10 +54,6 @@ class LoginView(APIView):
 
 
 class ProfileView(APIView):
-<<<<<<< HEAD
-=======
-
->>>>>>> development
     def get_user(self, pk):
         """ returns user from db by its pk(id) or responds 404 not found """
         try:
@@ -65,7 +61,7 @@ class ProfileView(APIView):
         except User.DoesNotExist:
             raise NotFound()
 
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         user = User.objects.get(pk=request.user.id)

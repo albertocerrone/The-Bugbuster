@@ -10,14 +10,9 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Bars from './components/common/Bars'
 import Home from './components/projects/Home'
-<<<<<<< HEAD
 import NewProject from './components/projects/NewProject'
 import SetRoles from './components/roles&groups/SetRoles'
-
-=======
-import CreateProject from './components/common/CreateProject'
 import AccountPage from './components/common/AccountPage'
->>>>>>> development
 
 import theme from './styles/theme/index'
 
