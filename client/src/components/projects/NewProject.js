@@ -87,7 +87,6 @@ function NewProject() {
     e.preventDefault()
     try {
       const { data } = await createProject(formdata)
-      console.log(data.id)
       history.push(`/home/project/${data.id}/roles`)
     } catch (err) {
       console.log(err.response.data)

@@ -91,8 +91,10 @@ export function getAllGroups() {
 }
 
 //*Post a Role
-export function postSingleRole(formdata) {
-  return axios.post(`${baseUrl}/groups/`, formdata, headers())
+export function assignRoles(arrFormdata) {
+  arrFormdata.forEach(element => {
+    return axios.post(`${baseUrl}/groups/`, element, headers())
+  })
 }
 
 //*Get single User Profile

@@ -19,8 +19,8 @@ import { logout } from '../../../lib/auth'
 
 const useStyles = makeStyles(() => ({
   root: {
-    backdropFilter: 'blur(30px)',
-    background: 'rgba(23, 213, 239, 0.8)'
+    backdropFilter: 'blur(10px)',
+    background: 'rgba(23, 213, 239, 0.7)'
 
   },
   avatar: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
   logo: {
     fontSize: 45,
     fontWeight: 700,
-    background: 'linear-gradient(96.21deg, #E751D8 39.3%, #17D5EF 90.17%)',
+    background: 'linear-gradient(96.21deg, #E751D8 39.3%, purple 90.17%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent'
   }
