@@ -11,9 +11,9 @@ import {
 
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import Dialog from '@material-ui/core/Dialog'
-import { createProject } from '../../lib/api'
-import { useHistory } from 'react-router-dom'
-import { getProfile } from '../../lib/api'
+import { assignRoles, createProject, getProfile } from '../../lib/api'
+import { isAuthenticated } from '../../lib/auth'
+import { useHistory, Link, useLocation } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,7 +68,7 @@ const CssTextField = withStyles({
 function NewProject() {
   const classes = useStyles()
   const history = useHistory()
-
+  const [userdata, setUserdata] = React.useState(null)
   const [formdata, setFormdata] = React.useState({
     name: '',
     description: '',
@@ -79,16 +79,43 @@ function NewProject() {
     description: '',
     deadline: ''
   })
+  // const [projectUser, setprojectUser] = React.useState({
+  //   id: userdata.id,
+  //   project: '',
+  //   role: 'Manager'
+  // })
 
   const handleChange = (e) => {
     setFormdata({ ...formdata, [e.target.name]: e.target.value })
   }
+
+  React.useEffect(() => {
+    if (!isAuthenticated) return
+    const getData = async () => {
+      try {
+        const { data } = await getProfile()
+        // console.log(data)
+        setUserdata(data)
+        console.log(userdata)
+      } catch (err) {
+        console.log(err)
+        return
+      }
+    }
+    getData()
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const { data } = await createProject(formdata)
       console.log(data.id)
+      const response = await assignRoles([{
+        user: userdata.id,
+        project: data.id,
+        role: 'Manager'
+      }])
+      console.log(response)
       history.push(`/home/project/${data.id}/roles`)
     } catch (err) {
       console.log(err.response.data)
