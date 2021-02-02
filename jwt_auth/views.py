@@ -13,6 +13,7 @@ from .serializers.populated import PopulatedUserSerializer
 
 User = get_user_model()
 
+
 class RegisterView(APIView):
     """ Controller for post request to /auth/register """
 
@@ -53,8 +54,6 @@ class LoginView(APIView):
 
 
 class ProfileView(APIView):
-
-<<<<<<< HEAD
     def get_user(self, pk):
         """ returns user from db by its pk(id) or responds 404 not found """
         try:
@@ -62,10 +61,7 @@ class ProfileView(APIView):
         except User.DoesNotExist:
             raise NotFound()
 
-    permission_classes = (IsAuthenticated, )
-=======
     permission_classes = (IsAuthenticated,)
->>>>>>> 1cc5c8fd790512330319fd32474119ed51e435a0
 
     def get(self, request):
         user = User.objects.get(pk=request.user.id)
@@ -84,12 +80,13 @@ class ProfileView(APIView):
             updated_user.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY
         )
 
+
 class ProfileListView(APIView):
-  
     def get(self, _request):
         users = User.objects.all()
         serialized_user = UserSerializer(users, many=True)
         return Response(serialized_user.data, status=status.HTTP_200_OK)
+
 
 class ProfileDetailView(APIView):
     def get_user(self, pk):
@@ -103,5 +100,3 @@ class ProfileDetailView(APIView):
         user = self.get_user(pk=pk)
         serialized_user = UserSerializer(user)
         return Response(serialized_user.data, status=status.HTTP_200_OK)
-
-
