@@ -13,6 +13,7 @@ import Home from './components/projects/Home'
 import NewProject from './components/projects/NewProject'
 import SetRoles from './components/roles&groups/SetRoles'
 import AccountPage from './components/common/AccountPage'
+import ProjectsShow from './components/projects/ProjectsShow'
 
 import theme from './styles/theme/index'
 
@@ -61,6 +62,7 @@ function App() {
                 <div className={classes.content}>
                   <Route exact path="/home" component={Home} />
                   <Route exact path="/new-project" component={NewProject} />
+                  <Route exact path="/home/projects/:id" component={ProjectsShow} />
                   <Route exact path="/home/project/:id/roles" component={SetRoles} />
                   <Route exact path="/account" component={AccountPage} />
                 </div>
