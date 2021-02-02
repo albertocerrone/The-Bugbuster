@@ -13,7 +13,6 @@ import MuiDialogContent from '@material-ui/core/DialogContent'
 import Dialog from '@material-ui/core/Dialog'
 import { createProject } from '../../lib/api'
 import { useHistory } from 'react-router-dom'
-import { DatePicker } from '@material-ui/pickers'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,8 +87,8 @@ function NewProject() {
     e.preventDefault()
     try {
       const { data } = await createProject(formdata)
-      console.log({ data })
-      history.push('/group')
+      console.log(data.id)
+      history.push(`/home/project/${data.id}/roles`)
     } catch (err) {
       console.log(err.response.data)
       setError(err.response.data)

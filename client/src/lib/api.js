@@ -108,3 +108,7 @@ export function loginUser(formdata) {
 export function getProfile() {
   return axios.get(`${baseUrl}/auth/profile/`, headers())
 }
+//* Get all Users
+export function getUsers() {
+  return axios.get(`${baseUrl}/auth/profiles/`, headers())
+}

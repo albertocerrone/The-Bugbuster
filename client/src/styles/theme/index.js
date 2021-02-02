@@ -7,7 +7,7 @@ const theme = createMuiTheme({
     background: {
       dark: '#F4F6F8',
       default: colors.common.white,
-      paper: colors.common.white
+      paper: colors.common.gray
     },
     primary: {
       main: colors.cyan[400]
