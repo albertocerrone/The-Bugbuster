@@ -137,15 +137,22 @@ const TableUsers = ({ className, users, ...rest }) => {
                         <FormControl component="fieldset">
                           <RadioGroup
                             aria-label="role" name="role"
-                            value={user.role}
-                            onChange={handleChange}
+                            // value={user.role}
+                            // onChange={handleChange}
 
                           >
-                            <FormControlLabel value="manager"
-                              control={<Radio />} label="Manager"
+                            <FormControlLabel 
+                              value="manager"
+                              control={<Radio />} 
+                              label="Manager"
+                              onChange={handleChange}
                             />
-                            <FormControlLabel value="developer" control={<Radio />} label="Developer" />
-
+                            <FormControlLabel 
+                              value="developer" 
+                              control={<Radio />} 
+                              label="Developer" 
+                              onChange={handleChange}
+                            />
                           </RadioGroup>
                         </FormControl>
                       }

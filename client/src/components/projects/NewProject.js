@@ -109,7 +109,6 @@ function NewProject() {
           }
         }}
       >
-
         <DialogContent >
           <form onSubmit={handleSubmit} className={classes.form}>
             <Typography
@@ -129,7 +128,6 @@ function NewProject() {
               onChange={handleChange}
               value={formdata.name}
               variant="outlined"
-
             />
             <CssTextField
               error={Boolean(error.description)}
