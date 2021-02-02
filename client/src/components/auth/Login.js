@@ -3,6 +3,7 @@ import React from 'react'
 import { useHistory, Link as RouterLink } from 'react-router-dom'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
+import useForm from '../../utils/useForm'
 
 import {
   Box,
@@ -38,33 +39,34 @@ const useStyles = makeStyles((theme) => ({
 function Login() {
 
   const history = useHistory()
-  const [error, setError] = React.useState(false)
-  const [formdata, setFormdata] = React.useState({
+  const { formdata, errors, handleChange, setErrors } = useForm({
     email: '',
     password: ''
   })
 
-  const handleChange = (e) => {
-    setFormdata({ ...formdata, [e.target.name]: e.target.value })
-  }
-
   const handleSubmit = async (e) => {
+    e.preventDefault()
+
     try {
-      e.preventDefault()
       const { data } = await loginUser(formdata)
-      console.log('submitted')
-      console.log(data)
       setToken(data.token)
-      history.push('/home')
+
+      setTimeout(() => {
+        history.push('/home')
+      }, 500)
     } catch (err) {
-      console.log(err.response.data.detail)
-      setError(true)
+      const errorobj = {
+        email: err.response.data.detail,
+        password: err.response.data.detail
+      }
+      setErrors(errorobj)
+      console.log('err.response.data: ', err.response.data)
+      console.log('Errors: ', errors)
     }
   }
-  const handleFocus = () => {
-    setError(false)
-  }
+
   const classes = useStyles()
+  
   return (
     <Container fixed
       className={classes.root}>
@@ -86,22 +88,19 @@ function Login() {
             </Box>
 
             <TextField
-              error={error}
+              error={(errors.email)}
               fullWidth
-              helperText={error ? 'Email maybe wrong' : ''}
               label="E-Mail"
               margin="normal"
               name="email"
-              type="email"
               onChange={handleChange}
               value={formdata.email}
               variant="outlined"
-              onFocus={handleFocus}
             />
             <TextField
-              error={error}
+              error={Boolean(errors.password)}
               fullWidth
-              helperText={error ? 'Password maybe wrong' : ''}
+              helperText={errors.detail}
               label="Password"
               margin="normal"
               name="password"
@@ -109,10 +108,7 @@ function Login() {
               value={formdata.password}
               variant="outlined"
               type="password"
-              onFocus={handleFocus}
-
             />
-
             <Box my={2}>
               <Button
                 color="primary"

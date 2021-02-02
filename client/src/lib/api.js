@@ -95,6 +95,19 @@ export function postSingleRole(formdata) {
   return axios.post(`${baseUrl}/groups/`, formdata, headers())
 }
 
+//*Get single User Profile
+export function getSingleUser(id) {
+  return axios.get(`${baseUrl}/auth/profile/${id}/`, headers())
+}
+//*Get all User Profiles
+export function getAllUsers() {
+  return axios.get(`${baseUrl}/auth/profiles/`, headers())
+}
+//*Update current User
+export function updateUser(formdata) {
+  return axios.put(`${baseUrl}/auth/profile/`, formdata, headers())
+}
+
 //* Register User
 export function registerUser(formdata) {
   return axios.post(`${baseUrl}/auth/register/`, formdata)
@@ -104,7 +117,7 @@ export function loginUser(formdata) {
   return axios.post(`${baseUrl}/auth/login/`, formdata)
 }
 
-//* Get User Profile
+//* Get Current User Profile
 export function getProfile() {
   return axios.get(`${baseUrl}/auth/profile/`, headers())
 }

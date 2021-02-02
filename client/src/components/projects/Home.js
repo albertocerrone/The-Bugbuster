@@ -20,6 +20,9 @@ import { Pagination } from '@material-ui/lab'
 import ProjectCard from './ProjectCard'
 
 const useStyles = makeStyles((theme) => ({
+  html: {
+    overflow: 'hidden'
+  },
   root: {
     minHeight: '100%',
     paddingBottom: theme.spacing(3),
@@ -51,7 +54,7 @@ function Home() {
     const getData = async () => {
       try {
         const { data } = await getProfile()
-        console.log(data.group)
+        // console.log(data)
         setUserRole(data.group)
       } catch (err) {
         if (err.response.status === 401 || err.response.status === 403) {

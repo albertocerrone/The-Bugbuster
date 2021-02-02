@@ -3,6 +3,8 @@ import React from 'react'
 import { useHistory, Link as RouterLink } from 'react-router-dom'
 import ImageUpload from '../common/ImageUpload'
 import { registerUser } from '../../lib/api'
+import useForm from '../../utils/useForm'
+
 
 import {
   Box,
@@ -38,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
 function Register() {
 
   const history = useHistory()
-  const [formdata, setFormdata] = React.useState({
+
+  const { formdata, errors, handleChange, setErrors } = useForm({
     username: '',
     email: '',
     password: '',
@@ -47,21 +50,6 @@ function Register() {
     firstName: '',
     lastName: ''
   })
-  const [errors, setErrors] = React.useState({
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-    profileImage: '',
-    firstName: '',
-    lastName: ''
-  })
-
-
-  const handleChange = (e) => {
-    setFormdata({ ...formdata, [e.target.name]: e.target.value })
-  }
-
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -74,27 +62,13 @@ function Register() {
         history.push('/login')
       }, 500)
     } catch (err) {
-      const data = err.response.data
-      const errarr = {
-        username: data.username ? data.username[0] : '',
-        email: data.email ? data.email[0] : '',
-        password: data.password ? data.password[0] : '',
-        passwordConfirmation: data.passwordConfirmation ? data.passwordConfirmation[0] : '',
-        profileImage: data.profileImage ? data.profileImage[0] : '',
-        firstName: data.firstName ? data.firstName[0] : '',
-        lastName: data.lastName ? data.lastName[0] : ''
-      }
-      if (errarr) {
-        setErrors(errarr)
-      } else {
-        // setErrors('')
-      }
-      console.log('err.response.data: ', data)
+      console.log(err.response.data)
+      setErrors(err.response.data)
     }
   }
 
-  const classes = useStyles()
 
+  const classes = useStyles()
 
   return (
     <Container fixed
