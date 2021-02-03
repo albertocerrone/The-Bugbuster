@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from 'axios'
 import React from 'react'
-import { Link, useParams, useHistory } from 'react-router-dom'
+import { Link as RouterLink, useParams, useHistory } from 'react-router-dom'
 import { getSingleProject } from '../../lib/api'
 // import { v4 as uuidv4 } from 'uuid'
 import { isAuthenticated } from '../../lib/auth'
@@ -13,7 +13,8 @@ import {
   makeStyles,
   Typography,
   Tooltip,
-  Fab
+  Fab,
+  Link
 } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function PokeShow() {
+function ProjectShow() {
   const history = useHistory()
   const { id } = useParams()
   const [projectdata, setProjectdata] = React.useState(null)
@@ -49,6 +50,7 @@ function PokeShow() {
 
   const handleClick = () => {
     setOpen(!open)
+    history.push(`/home/projects/${id}/new-ticket`)
   }
 
   //* get single item
@@ -133,7 +135,7 @@ function PokeShow() {
                 <>
                   <ul>
                     {projectdata.tickets.map(ticket => (
-                      <li key={ticket.id}> {ticket.title} -owner: {ticket.owner.user.firstName} {ticket.owner.user.lastName} -assigned to: {ticket.assignedUser.user.firstName} {ticket.assignedUser.user.lastName}</li>
+                      <li key={ticket.id}> {ticket.title} -owner: {ticket.owner.user.firstName} {ticket.owner.user.lastName} -assigned to: {ticket.assignedUser.user.firstName} {ticket.assignedUser.user.lastName} -status :{ticket.status}</li>
                     ))}
                   </ul>
                 </>
@@ -157,14 +159,41 @@ function PokeShow() {
           size="large"
           className={classes.absolute}
           onClick={handleClick}
-          component={Link} to={`/home/project/${id}/roles`}
+          component={RouterLink} to={`/home/projects/${id}/roles`}
         >
           <AddIcon />
         </Fab>
+      </Tooltip>
+      <Tooltip
+        title="Add Ticket"
+        aria-label="add"
+        enterDelay={400}
+        leaveDelay={250}
+        style={{ margin: '0 0 5rem 0' }}
+      >
+        {/* <Fab
+          color="secondary"
+          size="large"
+          className={classes.absolute}
+          onClick={handleClick}
+          component={RouterLink}
+          to={`/home/project/${id}/new-ticket`}
+        > */}
+        <Link
+          color="secondary"
+          size="large"
+          className={classes.absolute}
+          onClick={handleClick}
+          component={RouterLink}
+          to={`/home/projects/${id}/new-ticket`}
+        >
+          <AddIcon />
+        </Link>
+        {/* </Fab> */}
       </Tooltip>
     </>
   )
 }
 
-export default PokeShow
+export default ProjectShow
 
