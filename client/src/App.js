@@ -13,7 +13,7 @@ import NewProject from './components/projects/NewProject'
 import NewTicket from './components/tickets/NewTicket'
 import SetRoles from './components/roles&groups/SetRoles'
 import AccountPage from './components/common/AccountPage'
-import ProjectShow from './components/projects/ProjectsShow'
+import ProjectShow from './components/projects/ProjectShow'
 
 import theme from './styles/theme/index'
 
@@ -59,7 +59,7 @@ function App() {
                   <Route exact path="/home" component={Home} />
                   <Route exact path="/new-project" component={NewProject} />
                   <Route exact path="/home/projects/:id/new-ticket" component={NewTicket} />
-                  <Route exact path="/home/project/:id/roles" component={SetRoles} />
+                  <Route exact path="/home/projects/:id/roles" component={SetRoles} />
                   <Route exact path="/home/projects/:id" component={ProjectShow} />
                   <Route exact path="/account" component={AccountPage} />
                 </div>

@@ -20,9 +20,6 @@ import { Pagination } from '@material-ui/lab'
 import ProjectCard from './ProjectCard'
 
 const useStyles = makeStyles((theme) => ({
-  html: {
-    overflow: 'hidden'
-  },
   root: {
     minHeight: '100%',
     paddingBottom: theme.spacing(3),

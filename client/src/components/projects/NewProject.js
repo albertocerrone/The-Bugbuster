@@ -79,11 +79,6 @@ function NewProject() {
     description: '',
     deadline: ''
   })
-  // const [projectUser, setprojectUser] = React.useState({
-  //   id: userdata.id,
-  //   project: '',
-  //   role: 'Manager'
-  // })
 
   const handleChange = (e) => {
     setFormdata({ ...formdata, [e.target.name]: e.target.value })
@@ -94,7 +89,6 @@ function NewProject() {
     const getData = async () => {
       try {
         const { data } = await getProfile()
-        // console.log(data)
         setUserdata(data)
         console.log(userdata)
       } catch (err) {
@@ -116,7 +110,7 @@ function NewProject() {
         role: 'Manager'
       }])
       console.log(response)
-      history.push(`/home/project/${data.id}/roles`)
+      history.push(`/home/projects/${data.id}/roles`)
     } catch (err) {
       console.log(err.response.data)
       setError(err.response.data)
