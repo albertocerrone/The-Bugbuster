@@ -17,6 +17,7 @@ class TicketListView(APIView):
         return Response(serialized_ticket.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        request.data["user_owner"] = request.user.id
         request.data["owner"] = request.user.id
         ticket_to_create = TicketSerializer(data=request.data)
         if ticket_to_create.is_valid():

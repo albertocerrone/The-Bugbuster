@@ -55,7 +55,6 @@ function TicketsIndex() {
         const { data } = await getProfile()
         console.log(data)
         setUser(data)
-
         const response = await getAllTickets()
         console.log('response: ', response.data)
         setTickets(response.data)
@@ -72,7 +71,7 @@ function TicketsIndex() {
   console.log('assigned tickets: ', myAssignedTickets)
 
   const myCreatedTickets = tickets.filter(ticket => {
-    return ticket.owner.user.id === user.id
+    return ticket.userOwner.id === user.id
   })
   console.log('owned tickets: ', myCreatedTickets)
 
@@ -157,22 +156,6 @@ function TicketsIndex() {
               size="small"
             />
           </Box>
-          <Tooltip
-            title="Create a Project"
-            aria-label="add"
-            enterDelay={400}
-            leaveDelay={250}
-          >
-            <Fab
-              color="secondary"
-              size="large"
-              className={classes.absolute}
-              onClick={handleClick}
-              component={Link} to={'/new-project'}
-            >
-              <AddIcon />
-            </Fab>
-          </Tooltip>
         </Container>
       }
     </Container>

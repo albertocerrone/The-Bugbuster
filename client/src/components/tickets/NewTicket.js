@@ -75,6 +75,7 @@ function NewTicket() {
   const [project, setProject] = React.useState(null)
   const [members, setMembers] = React.useState('')
   const [formdata, setFormdata] = React.useState({
+    userOwner: '',
     title: '',
     project: parseInt(id),
     description: '',
@@ -102,9 +103,8 @@ function NewTicket() {
       try {
         const { data } = await getProfile()
         setUserdata(data)
-
         const response = await getSingleProject(id)
-        console.log('singleProject: ', response)
+        console.log('singleProject: ', response.data)
         setMembers(response.data.members)
       } catch (err) {
         console.log(err)
@@ -128,6 +128,7 @@ function NewTicket() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      setFormdata(formdata)
       console.log(formdata)
       const { data } = await createTicket(formdata)
       console.log(data.id)
@@ -221,41 +222,11 @@ function NewTicket() {
                       {member.user.firstName} {member.user.lastName}
                     </MenuItem>
                   ))}
-                  {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem> */}
                 </Menu>
               </div>
-              // <select
-              //   required
-              //   onChange={handleChange}
-              // >
-              //   <option value="">Select User</option>
-              //   { members.map((member) => (
-              //     <option 
-              //       value={member.user.id}
-              //       key={member.user.id}
-              //     >
-              //       {member.user.firstName} {member.user.lastName}
-              //     </option>
-              //   ))}
-              // </select>
               :
               'Loading ...'
             }
-            {/* <CssTextField
-              error={Boolean(error.deadline)}
-              fullWidth
-              helperText={error.deadline}
-              label="Deadline YYYY-MM-DD"
-              type="text"
-              margin="normal"
-              name="deadline"
-              onChange={handleChange}
-              value={formdata.deadline}
-              variant="outlined"
-              color="primary"
-            /> */}
             <Box my={2}>
               <Button
                 color="primary"

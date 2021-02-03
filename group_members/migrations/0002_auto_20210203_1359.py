@@ -10,24 +10,33 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('projects', '0001_initial'),
-        ('group_members', '0001_initial'),
+        ("projects", "0001_initial"),
+        ("group_members", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ("group_members", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='groupmember',
-            name='project',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='members', to='projects.project'),
+            model_name="groupmember",
+            name="project",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="members",
+                to="projects.project",
+            ),
         ),
         migrations.AddField(
-            model_name='groupmember',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='group', to=settings.AUTH_USER_MODEL),
+            model_name="groupmember",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                related_name="group",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterUniqueTogether(
-            name='groupmember',
-            unique_together={('user', 'project')},
+            name="groupmember",
+            unique_together={("user", "project")},
         ),
     ]

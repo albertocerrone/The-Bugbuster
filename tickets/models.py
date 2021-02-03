@@ -25,7 +25,7 @@ class Ticket(models.Model):
         (BLOCKED, "Blocked"),
         (RESOLVED, "Resolved"),
     ]
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=70)
     types = models.CharField(
         max_length=14,
         choices=types_of_tickets,
@@ -41,6 +41,11 @@ class Ticket(models.Model):
     )
     owner = models.ForeignKey(
         "group_members.GroupMember",
+        related_name="created_tickets",
+        on_delete=models.DO_NOTHING,
+    )
+    user_owner = models.ForeignKey(
+        "jwt_auth.User",
         related_name="created_tickets",
         on_delete=models.DO_NOTHING,
     )

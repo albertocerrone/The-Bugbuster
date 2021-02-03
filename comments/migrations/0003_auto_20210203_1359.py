@@ -11,19 +11,27 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('comments', '0002_comment_owner'),
-        ('tickets', '0001_initial'),
+        ("comments", "0002_comment_owner"),
+        ("tickets", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='comment',
-            name='ticket',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='tickets.ticket'),
+            model_name="comment",
+            name="ticket",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="comments",
+                to="tickets.ticket",
+            ),
         ),
         migrations.AddField(
-            model_name='comment',
-            name='user_owner',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='posted_comments', to=settings.AUTH_USER_MODEL),
+            model_name="comment",
+            name="user_owner",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="posted_comments",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
