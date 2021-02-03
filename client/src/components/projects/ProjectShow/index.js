@@ -56,7 +56,7 @@ function ProjectShow() {
       try {
         const { data } = await getSingleProject(id)
         setProjectData(data)
-        console.log(data)
+        // console.log(data)
       } catch (err) {
         console.log(err)
       }
@@ -166,7 +166,7 @@ function ProjectShow() {
               className={classes.absolute}
               onClick={handleClick}
               component={RouterLink}
-              to={`/home/project/${id}/new-ticket`}
+              to={`/home/projects/${id}/new-ticket`}
             >
 
               <AddIcon />

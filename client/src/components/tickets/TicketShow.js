@@ -64,6 +64,7 @@ function TicketShow() {
       try { 
         const { data } = await getProfile()
         setUser(data)
+        console.log(data)
 
         const response = await getAllTickets()
         setTickets(response.data)

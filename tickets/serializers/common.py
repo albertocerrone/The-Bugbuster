@@ -14,6 +14,7 @@ class DetailTicketSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "owner",
+            "user_owner",
             "title",
             "types",
             "description",

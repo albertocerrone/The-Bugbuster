@@ -9,6 +9,7 @@
     "creation_date": "2021-02-01T10:56:01.986Z",
     "status": "New",
     "owner": 3,
+    "user_owner": 5,
     "project": 1,
     "assigned_user": 1
   }
@@ -23,6 +24,7 @@
     "creation_date": "2021-02-01T10:56:54.020Z",
     "status": "In Progress",
     "owner": 2,
+    "user_owner": 1,
     "project": 1,
     "assigned_user": 1
   }

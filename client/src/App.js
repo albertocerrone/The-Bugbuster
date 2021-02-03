@@ -13,9 +13,9 @@ import NewProject from './components/projects/NewProject'
 import NewTicket from './components/tickets/NewTicket'
 import SetRoles from './components/roles&groups/SetRoles'
 import AccountPage from './components/common/AccountPage'
-import ProjectShow from './components/projects/ProjectsShow'
 import TicketsIndex from './components/tickets/TicktetsIndex'
 import TicketShow from './components/tickets/TicketShow'
+import ProjectShow from './components/projects/ProjectShow'
 
 import theme from './styles/theme/index'
 
