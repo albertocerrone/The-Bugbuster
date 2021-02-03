@@ -61,7 +61,7 @@ function App() {
                   <Route exact path="/home" component={Home} />
                   <Route exact path="/new-project" component={NewProject} />
                   <Route exact path="/home/projects/:id/new-ticket" component={NewTicket} />
-                  <Route exact path="/home/project/:id/roles" component={SetRoles} />
+                  <Route exact path="/home/projects/:id/roles" component={SetRoles} />
                   <Route exact path="/home/projects/:id" component={ProjectShow} />
                   <Route exact path="/tickets" component={TicketsIndex} />
                   <Route exact path="/tickets/:id" component={TicketShow} />

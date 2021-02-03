@@ -179,16 +179,7 @@ function ProjectShow() {
           component={RouterLink}
           to={`/home/projects/${id}/new-ticket`}
         >
-          {/* <Link
-            color="secondary"
-            size="large"
-            className={classes.absolute}
-            onClick={handleClick}
-            component={RouterLink}
-            to={`/home/projects/${id}/new-ticket`}
-      > */}
           <AddIcon />
-          {/* </Link> */}
         </Fab>
       </Tooltip>
     </>
