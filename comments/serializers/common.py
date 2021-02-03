@@ -11,4 +11,4 @@ class CommentSerializer(ModelSerializer):
 class NestedCommentSerializer(ModelSerializer):
     class Meta:
         model = Comment
-        fields = ("id", "owner", "content", "creation_date")
+        fields = ("id", "owner", "content", "creation_date", "user_owner")

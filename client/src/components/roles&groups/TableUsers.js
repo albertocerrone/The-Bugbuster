@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useParams, useHistory } from 'react-router-dom'
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import Skeleton from '@material-ui/lab/Skeleton'
 import {
   Box,
   Card,
@@ -116,7 +117,7 @@ const TableUsers = ({ className, users, ...rest }) => {
                 </TableRow>
               </TableHead>
               {!userProfile ?
-                <p>loading...</p>
+                <Skeleton variant="rect" width={210} height={118} />
                 :
                 <>
                   <TableBody>

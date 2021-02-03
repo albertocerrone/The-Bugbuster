@@ -97,12 +97,10 @@ function NewTicket() {
   }
 
   React.useEffect(() => {
-    if (id) console.log('id: ',id)
     if (!isAuthenticated) return
     const getData = async () => {
       try {
         const { data } = await getProfile()
-        console.log('Current Profile data: ', data)
         setUserdata(data)
 
         const response = await getSingleProject(id)
@@ -123,7 +121,7 @@ function NewTicket() {
   // const usersWithoutOwner = users.filter(user => {
   //   return user.data.id !== 1
   // })
-  // console.log('userswithout owner: ', usersWithoutOwner)
+  // console.log('usersWithout owner: ', usersWithoutOwner)
 
 
 
@@ -201,7 +199,7 @@ function NewTicket() {
               multiline
               rows={3}
             />
-            { members ?
+            {members ?
               <div>
                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                   Assign User
@@ -213,7 +211,7 @@ function NewTicket() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  { members.map((member) => (
+                  {members.map((member) => (
                     <MenuItem
                       style={{ 'background-color': 'black' }}
                       onClick={handleClose}

@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Tickets = ({ className, projectData, ...rest }) => {
   const classes = useStyles()
-
+  const projectId = projectData.id
   return (
     <Card
       className={clsx(classes.root, className)}
@@ -86,7 +86,9 @@ const Tickets = ({ className, projectData, ...rest }) => {
                 {projectData.tickets.map(ticket => (
                   <TicketRow
                     key={ticket.id}
-                    ticket={ticket} />
+                    ticket={ticket}
+
+                  />
                 ))}
               </Table>
             </TableContainer>

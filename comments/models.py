@@ -9,6 +9,11 @@ class Comment(models.Model):
         related_name="posted_comments",
         on_delete=models.CASCADE,
     )
+    user_owner = models.ForeignKey(
+        "jwt_auth.User",
+        related_name="posted_comments",
+        on_delete=models.CASCADE,
+    )
     ticket = models.ForeignKey(
         "tickets.Ticket",
         related_name="comments",

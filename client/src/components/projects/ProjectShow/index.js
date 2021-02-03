@@ -2,8 +2,7 @@
 import axios from 'axios'
 import React from 'react'
 import { Link as RouterLink, useParams, useHistory } from 'react-router-dom'
-import { getSingleProject } from '../../../lib/api'
-
+import { getSingleProject, getProfile } from '../../../lib/api'
 import {
   Box,
   Container,
@@ -44,11 +43,27 @@ function ProjectShow() {
   const [projectData, setProjectData] = React.useState(null)
   const [open, setOpen] = React.useState(false)
   const classes = useStyles()
+  const [user, setUser] = React.useState()
+  const [userRole, setUserRole] = React.useState()
 
   const handleClick = () => {
     setOpen(!open)
     history.push(`/home/projects/${id}/new-ticket`)
   }
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getProfile()
+        setUser(data)
+      } catch (err) {
+        console.log(err)
+        return
+      }
+    }
+    getData()
+  }, [])
+
 
   //* get single item
   React.useEffect(() => {
@@ -56,28 +71,12 @@ function ProjectShow() {
       try {
         const { data } = await getSingleProject(id)
         setProjectData(data)
-        console.log(data)
       } catch (err) {
         console.log(err)
       }
     }
     getData()
   }, [id])
-
-
-
-  // const handleProjectDelete = async event => { //Delete Comments Logic 
-  //   const commentId = event.target.value 
-  //   try {
-  //     await deleteComment(id, commentId)
-  //     setCommentToDelete(event.target.value) 
-  //   } catch (err) {
-  //     if (err.response.data.message === 'Unauthorized') {
-  //       setUnauthorized(true)
-  //       return 
-  //     }
-  //   }
-  // }
 
 
   return (
@@ -136,26 +135,8 @@ function ProjectShow() {
             </Grid>
           </Container>
 
-
-
-          {/* <Tooltip
-        title="Add Members"
-        aria-label="add"
-        enterDelay={400}
-        leaveDelay={250}
-      >
-        <Fab
-          color="secondary"
-          size="large"
-          className={classes.absolute}
-          onClick={handleClick}
-          component={RouterLink} to={`/home/projects/${id}/roles`}
-        >
-          <AddIcon />
-        </Fab>
-      </Tooltip> */}
           <Tooltip
-            title="Add Ticket"
+            title="Add New Ticket"
             aria-label="add"
             enterDelay={400}
             leaveDelay={250}
@@ -166,13 +147,13 @@ function ProjectShow() {
               className={classes.absolute}
               onClick={handleClick}
               component={RouterLink}
-              to={`/home/project/${id}/new-ticket`}
+              to={`/home/projects/${id}/new-ticket`}
             >
-
               <AddIcon />
-
             </Fab>
           </Tooltip>
+
+
         </>
       }
     </Container>

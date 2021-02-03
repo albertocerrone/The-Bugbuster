@@ -21,6 +21,7 @@ class CommentListView(APIView):
 
     def post(self, request):
         request.data["owner"] = request.user.id
+        request.data["user_owner"] = request.user.id
         comment_to_create = CommentSerializer(data=request.data)
         print(comment_to_create)
         if comment_to_create.is_valid():

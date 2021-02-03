@@ -17,7 +17,7 @@ function Comment(comment) {
               color="textSecondary"
               variant="h6"
             >
-              {`USER: ${comment.comment.owner.user.firstName} ${comment.comment.owner.user.lastName}`}
+              {`USER: ${comment.comment.userOwner.firstName} ${comment.comment.userOwner.lastName}`}
             </Typography>
           </Grid>
           <Grid item>

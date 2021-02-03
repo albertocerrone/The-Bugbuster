@@ -13,6 +13,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import { Button, Grid } from '@material-ui/core'
 import Comment from './Comment'
+import { Link, useParams } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 function TicketRow(ticket) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
-  console.log(ticket.ticket.title)
+  const { id } = useParams()
   return (
     <>
       <TableRow className={classes.root}>
@@ -86,14 +87,23 @@ function TicketRow(ticket) {
               </Grid>
               <Grid
                 item
-                style={{ marginLeft: '40%', marginBottom: '10px' }}
+                style={{ marginLeft: '35%', marginBottom: '10px' }}
               >
                 <Button
                   color="primary"
                   variant="outlined"
                   size="small"
+                  component={Link}
+                  to={`/home/projects/${id}/ticket/${ticket.ticket.id}/new-comment`}
                 >
                   New Comment
+                </Button>
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  size="small"
+                >
+                  Update Ticket
                 </Button>
               </Grid>
             </Grid>
