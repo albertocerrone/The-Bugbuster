@@ -16,7 +16,7 @@ import {
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import { postSingleRole } from '../../lib/api'
 import { useHistory } from 'react-router-dom'
-import { getUsers } from '../../lib/api'
+import { getUsers, getProfile } from '../../lib/api'
 import Toolbar from './Toolbar'
 import TableUsers from './TableUsers'
 
@@ -39,20 +39,13 @@ function SetRoles() {
   const history = useHistory()
   const [users, setUsers] = React.useState()
 
-
   React.useEffect(() => {
     const getData = async () => {
       const { data } = await getUsers()
-      data.map(user => {
-        user['selected'] = false
-        user['role'] = 'developer'
-      })
-      console.log(data)
       setUsers(data)
     }
     getData()
   }, [setUsers])
-
 
   return (
     <>

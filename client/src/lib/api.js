@@ -90,11 +90,6 @@ export function getAllGroups() {
   return axios.get(`${baseUrl}/groups/`, headers())
 }
 
-//*Post a Role
-export function postSingleRole(formdata) {
-  return axios.post(`${baseUrl}/groups/`, formdata, headers())
-}
-
 //*Post a group of Roles
 export function assignRoles(arrFormdata) {
   arrFormdata.forEach(element => {

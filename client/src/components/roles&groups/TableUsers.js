@@ -2,10 +2,9 @@
 import React from 'react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import {
-  Avatar,
   Box,
   Card,
   Button,
@@ -15,20 +14,13 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  makeStyles,
-  Radio,
-  RadioGroup,
-  FormControl,
-  FormControlLabel,
-  Checkbox
+  makeStyles
 } from '@material-ui/core'
-import { assignRoles } from '../../lib/api'
-
+import UserRow from './UserRow'
+import { getProfile, assignRoles } from '../../lib/api'
 const useStyles = makeStyles((theme) => ({
   root: {},
-  avatar: {
-    marginRight: theme.spacing(2)
-  },
+
   form: {
     borderRadius: '45px',
     margin: theme.spacing(2)
@@ -40,40 +32,38 @@ const TableUsers = ({ className, users, ...rest }) => {
   const { id } = useParams()
   const [limit, setLimit] = React.useState(10)
   const [page, setPage] = React.useState(0)
-  const [user, setUser] = React.useState(users)
-  const [role, setRole] = React.useState({
-    user: '',
-    project: id,
-    role: '',
-    selected: ''
-  })
-  const oneRole = [{
-    'user': 4,
-    'project': 7,
-    'role': 'Manager'
-  },
-  {
-    'user': 5,
-    'project': 7,
-    'role': 'Manager'
-  },
-  {
-    'user': 6,
-    'project': 7,
-    'role': 'Manager'
-  }]
+  const history = useHistory()
+  const [usersToAdd, setUsersToAdd] = React.useState([])
+  const [userProfile, setUserProfile] = React.useState()
 
-  console.log({ role }, { user })
+  React.useEffect(() => {
+    const getData = async () => {
+      const { data } = await getProfile()
+      setUserProfile(data)
+    }
+    getData()
+  }, [])
 
-  const handleChange = (e) => {
-    setRole({ ...role, [e.target.name]: e.target.value })
-    const response = assignRoles(oneRole)
-    console.log(response)
+
+  const handleChangeCheckbox = (e) => {
+    if (e.target.checked) {
+      setUsersToAdd([...usersToAdd, { user: parseInt(e.target.value), project: parseInt(id), role: 'Developer' }])
+    } else {
+      const newUsersToAdd = usersToAdd.filter(user => {
+        return user.user !== e.target.value
+      })
+      setUsersToAdd(newUsersToAdd)
+    }
   }
-
-  // const handleSelectOne = (e) => {
-  //   setUser({ ...user, [e.target.name]: e.target.value })
-  // }
+  const setUserRole = (userId, selectedRole) => {
+    const updatedUsers = usersToAdd.map(user => {
+      if (parseInt(user.user) === userId) {
+        return { ...user, role: selectedRole }
+      }
+      return user
+    })
+    setUsersToAdd(updatedUsers)
+  }
 
   const handleLimitChange = (event) => {
     setLimit(event.target.value)
@@ -82,6 +72,17 @@ const TableUsers = ({ className, users, ...rest }) => {
   const handlePageChange = (event, newPage) => {
     setPage(newPage)
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await assignRoles(usersToAdd)
+      history.push(`/home/project/${id}`)
+    } catch (err) {
+      console.log(err.response.data)
+    }
+  }
+
 
   return (
     <Card
@@ -114,85 +115,39 @@ const TableUsers = ({ className, users, ...rest }) => {
 
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {users.slice(0, limit).map((user) => (
-                  <TableRow
-                    hover
-                    key={user.id}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        value={user.selected}
-                        name="selected"
+              {!userProfile ?
+                <p>loading...</p>
+                :
+                <>
+                  <TableBody>
+                    {users.slice(0, limit).filter(user => user.id !== userProfile.id).map((user) => (
+                      <UserRow
+                        key={user.id}
+                        user={user}
+                        handleChangeCheckbox={handleChangeCheckbox}
+                        setUserRole={setUserRole}
                       />
-                    </TableCell>
-                    <TableCell>
-                      <Box
-                        alignItems="center"
-                        display="flex"
-                      >
-                        <Avatar
-                          className={classes.avatar}
-                          src={user.profileImage}
-                        />
-
-                      </Box>
-                    </TableCell>
-                    <TableCell>
-                      {user.id}
-                    </TableCell>
-                    <TableCell>
-                      {`${user.firstName} ${user.lastName}`}
-                    </TableCell>
-                    <TableCell>
-                      {user.email}
-                    </TableCell>
-                    <TableCell>
-                      {!role ?
-                        <p>loading...</p>
-                        :
-                        <FormControl component="fieldset">
-                          <RadioGroup
-                            aria-label="role" name="role"
-                            // value={user.role}
-                            // onChange={handleChange}
-
-                          >
-                            <FormControlLabel 
-                              value="manager"
-                              control={<Radio />} 
-                              label="Manager"
-                              onChange={handleChange}
-                            />
-                            <FormControlLabel 
-                              value="developer" 
-                              control={<Radio />} 
-                              label="Developer" 
-                              onChange={handleChange}
-                            />
-                          </RadioGroup>
-                        </FormControl>
-                      }
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
+                    ))}
+                  </TableBody>
+                </>
+              }
             </Table>
           </Box>
 
-          <Box
-            display="flex"
-            justifyContent="center"
-            mt={4}
-          >
-            <Button
-              color="primary"
-              variant="contained"
-            >
-              Add roles
-            </Button>
-          </Box>
         </form>
+        <Box
+          display="flex"
+          justifyContent="center"
+          mt={4}
+        >
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleSubmit}
+          >
+            Add roles
+          </Button>
+        </Box>
       </PerfectScrollbar>
       <TablePagination
         component="div"
