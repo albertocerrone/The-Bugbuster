@@ -115,6 +115,37 @@ function TicketsIndex() {
               ))}
             </Grid>
           </Box>
+          <Typography
+            align="center"
+            color="textPrimary"
+            variant="h2"
+            style={{ margin: '3rem 0 0 0' }}
+          >
+            My Owned Tickets
+          </Typography>
+          <Box 
+            mt={4}
+          >
+            <Grid
+              container
+              spacing={3}
+            >
+              {myCreatedTickets.map((ticket) => (
+                <Grid
+                  item
+                  key={ticket.id}
+                  lg={4}
+                  md={6}
+                  xs={12}
+                >
+                  <TicketCard
+                    className={classes.projectCard}
+                    ticket={ticket}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
           <Box
             mt={3}
             display="flex"

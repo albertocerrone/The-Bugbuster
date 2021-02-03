@@ -15,6 +15,7 @@ import SetRoles from './components/roles&groups/SetRoles'
 import AccountPage from './components/common/AccountPage'
 import ProjectShow from './components/projects/ProjectsShow'
 import TicketsIndex from './components/tickets/TicktetsIndex'
+import TicketShow from './components/tickets/TicketShow'
 
 import theme from './styles/theme/index'
 
@@ -63,6 +64,7 @@ function App() {
                   <Route exact path="/home/project/:id/roles" component={SetRoles} />
                   <Route exact path="/home/projects/:id" component={ProjectShow} />
                   <Route exact path="/tickets" component={TicketsIndex} />
+                  <Route exact path="/tickets/:id" component={TicketShow} />
                   <Route exact path="/account" component={AccountPage} />
                 </div>
               </div>
