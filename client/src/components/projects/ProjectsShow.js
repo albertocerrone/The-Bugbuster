@@ -60,7 +60,7 @@ function ProjectShow() {
       try { 
         const { data } = await getSingleProject(id)
         setProjectdata(data)
-        console.log(data) 
+        console.log('projectdata: ', data)
       } catch (err) {
         console.log(err)
       }
@@ -171,15 +171,7 @@ function ProjectShow() {
         leaveDelay={250}
         style={{ margin: '0 0 5rem 0' }}
       >
-        {/* <Fab
-          color="secondary"
-          size="large"
-          className={classes.absolute}
-          onClick={handleClick}
-          component={RouterLink}
-          to={`/home/project/${id}/new-ticket`}
-        > */}
-        <Link
+        <Fab
           color="secondary"
           size="large"
           className={classes.absolute}
@@ -187,9 +179,17 @@ function ProjectShow() {
           component={RouterLink}
           to={`/home/projects/${id}/new-ticket`}
         >
+          {/* <Link
+            color="secondary"
+            size="large"
+            className={classes.absolute}
+            onClick={handleClick}
+            component={RouterLink}
+            to={`/home/projects/${id}/new-ticket`}
+      > */}
           <AddIcon />
-        </Link>
-        {/* </Fab> */}
+          {/* </Link> */}
+        </Fab>
       </Tooltip>
     </>
   )

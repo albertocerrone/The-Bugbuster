@@ -6,7 +6,9 @@ import {
   Button,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
+  Menu,
+  MenuItem
 } from '@material-ui/core'
 
 import MuiDialogContent from '@material-ui/core/DialogContent'
@@ -70,9 +72,11 @@ function NewTicket() {
   const classes = useStyles()
   const history = useHistory()
   const [userdata, setUserdata] = React.useState(null)
+  const [project, setProject] = React.useState(null)
+  const [members, setMembers] = React.useState('')
   const [formdata, setFormdata] = React.useState({
     title: '',
-    project: '',
+    project: parseInt(id),
     description: '',
     assignedUser: ''
   })
@@ -98,11 +102,12 @@ function NewTicket() {
     const getData = async () => {
       try {
         const { data } = await getProfile()
-        // console.log(data)
+        console.log('Current Profile data: ', data)
         setUserdata(data)
 
         const response = await getSingleProject(id)
-        console.log(response)
+        console.log('singleProject: ', response)
+        setMembers(response.data.members)
       } catch (err) {
         console.log(err)
         return
@@ -111,18 +116,44 @@ function NewTicket() {
     getData()
   }, [])
 
+  // const users = response.filter(user => {
+  //   return user.id !== userdata.id
+  // })
+  // console.log('AFTER FILTER: ', newUsersToAdd)
+  // const usersWithoutOwner = users.filter(user => {
+  //   return user.data.id !== 1
+  // })
+  // console.log('userswithout owner: ', usersWithoutOwner)
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      console.log(formdata)
       const { data } = await createTicket(formdata)
       console.log(data.id)
-      history.push(`/home/project/${data.id}`)
+      history.push(`/home/projects/${id}`)
     } catch (err) {
       console.log(err.response.data)
       setError(err.response.data)
     }
   }
 
+  const [anchorEl, setAnchorEl] = React.useState(null)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = (e) => {
+    const formData = { ...formdata, ['assignedUser']: e.target.value }
+    setFormdata(formData)
+    setAnchorEl(null)
+    // setFormdata({ ...formdata, [e.target.name]: e.target.value })
+    // console.log(e.target.value)
+    console.log(formdata)
+  }
 
 
   return (
@@ -147,14 +178,14 @@ function NewTicket() {
               New Ticket
             </Typography>
             <CssTextField
-              error={Boolean(error.name)}
+              error={Boolean(error.title)}
               fullWidth
-              helperText={error.name}
+              helperText={error.title}
               label="Ticket Name"
               margin="normal"
-              name="name"
+              name="title"
               onChange={handleChange}
-              value={formdata.name}
+              value={formdata.title}
               variant="outlined"
             />
             <CssTextField
@@ -170,6 +201,50 @@ function NewTicket() {
               multiline
               rows={3}
             />
+            { members ?
+              <div>
+                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                  Assign User
+                </Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  { members.map((member) => (
+                    <MenuItem
+                      style={{ 'background-color': 'black' }}
+                      onClick={handleClose}
+                      value={member.id}
+                      key={member.id}
+                    >
+                      {member.user.firstName} {member.user.lastName}
+                    </MenuItem>
+                  ))}
+                  {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+                </Menu>
+              </div>
+              // <select
+              //   required
+              //   onChange={handleChange}
+              // >
+              //   <option value="">Select User</option>
+              //   { members.map((member) => (
+              //     <option 
+              //       value={member.user.id}
+              //       key={member.user.id}
+              //     >
+              //       {member.user.firstName} {member.user.lastName}
+              //     </option>
+              //   ))}
+              // </select>
+              :
+              'Loading ...'
+            }
             {/* <CssTextField
               error={Boolean(error.deadline)}
               fullWidth

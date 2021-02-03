@@ -77,7 +77,7 @@ const TableUsers = ({ className, users, ...rest }) => {
     e.preventDefault()
     try {
       const response = await assignRoles(usersToAdd)
-      history.push(`/home/project/${id}`)
+      history.push(`/home/projects/${id}`)
     } catch (err) {
       console.log(err.response.data)
     }
