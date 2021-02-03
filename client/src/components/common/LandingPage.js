@@ -73,7 +73,7 @@ function LandingPage() {
             </Grid>
             <Grid item>
               <Typography variant="h3">
-                the best bug tracker ever... We hope
+                the best bug tracker ever... maybe
               </Typography>
 
             </Grid>
