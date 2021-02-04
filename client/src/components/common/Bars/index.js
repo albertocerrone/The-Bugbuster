@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 //import { useLocation } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core'
-import SideBar from './SideBar'
+import SideBar from './sidebar/index'
 import Navbar from './NavBar'
 import { getProfile } from '../../../lib/api'
 
