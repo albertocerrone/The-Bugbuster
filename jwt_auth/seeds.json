@@ -3,7 +3,7 @@
     "model": "jwt_auth.user",
     "pk": 1,
     "fields": {
-      "password": "pbkdf2_sha256$216000$yieJx25xhMfE$MX9QUvaWyQwu8wwh7oTNDZs1+kzFUzP45ysdrjHJbok=",
+      "password": "pbkdf2_sha256$216000$E5HIh5p22FOt$Fjvs4sDYY/eXnE6Rzp84gDVO6vv9zuOWP+coeK2kc5g=",
       "last_login": null,
       "is_superuser": false,
       "is_staff": false,

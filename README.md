@@ -18,7 +18,6 @@ Quick explanation of the project. Try to answer to this questions:
 > This project is the representation of Minesweeper from Windows 95. <br>
 > As simple as it sounds, this was my first project in General Assembly’s Software Engineering Immersive course. It was an individual project assigned to us after three weeks of learning and built in less than a week.<br>
 
-[Back To The Top](#the-bugbuster-)
 
 ---
 
