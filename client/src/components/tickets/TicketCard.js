@@ -53,7 +53,6 @@ const TicketCard = ({ className, ticket, ...rest }) => {
           to={`/home/projects/${ticket.project.id}`}
         >
           {ticket.title}
-          {console.log('thissss', ticket)}
         </Link>
         <Typography
           align="center"

@@ -1,22 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import { withStyles, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
-  Grid,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Checkbox,
-  Button,
-  Paper,
   Typography,
   Box
 } from '@material-ui/core'
-import MuiDialogContent from '@material-ui/core/DialogContent'
-import { postSingleRole } from '../../lib/api'
 import { useHistory } from 'react-router-dom'
-import { getUsers, getProfile } from '../../lib/api'
+import { getUsers } from '../../lib/api'
 import Toolbar from './Toolbar'
 import TableUsers from './TableUsers'
 

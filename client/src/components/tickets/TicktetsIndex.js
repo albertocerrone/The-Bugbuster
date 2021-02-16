@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { isAuthenticated } from '../../lib/auth'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { getAllTickets, getProfile } from '../../lib/api'
-import LoadingScreen from '../common/LoadingScreen'
 import {
   Box,
   Container,
@@ -13,7 +12,6 @@ import {
   Tooltip,
   Fab
 } from '@material-ui/core'
-import AddIcon from '@material-ui/icons/Add'
 import { Pagination } from '@material-ui/lab'
 import TicketCard from './TicketCard'
 
@@ -53,10 +51,8 @@ function TicketsIndex() {
     const getData = async () => {
       try {
         const { data } = await getProfile()
-        console.log(data)
         setUser(data)
         const response = await getAllTickets()
-        console.log('response: ', response.data)
         setTickets(response.data)
       } catch (err) {
         console.log(err)
@@ -68,12 +64,10 @@ function TicketsIndex() {
   const myAssignedTickets = tickets.filter(ticket => {
     return ticket.assignedUser.user.id === user.id
   })
-  console.log('assigned tickets: ', myAssignedTickets)
 
   const myCreatedTickets = tickets.filter(ticket => {
     return ticket.userOwner.id === user.id
   })
-  console.log('owned tickets: ', myCreatedTickets)
 
 
   return (
@@ -122,7 +116,7 @@ function TicketsIndex() {
           >
             My Owned Tickets
           </Typography>
-          <Box 
+          <Box
             mt={4}
           >
             <Grid

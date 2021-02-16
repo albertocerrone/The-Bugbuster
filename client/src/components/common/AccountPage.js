@@ -69,7 +69,6 @@ function AccountPage() {
     getData()
   }, [setFormdata])
 
-  console.log(formdata)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -108,7 +107,7 @@ function AccountPage() {
                   color="textSecondary"
                   gutterBottom
                   variant="h3"
-                  // defaultValue={}
+                // defaultValue={}
                 >
                   the <span className={classes.logo}>BugBuster</span>
                 </Typography>

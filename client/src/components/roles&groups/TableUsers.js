@@ -159,7 +159,7 @@ const TableUsers = ({ className, users, ...rest }) => {
         rowsPerPage={limit}
         rowsPerPageOptions={[5, 10, 25]}
       />
-    </Card >
+    </Card>
   )
 }
 
