@@ -28,15 +28,15 @@ This project is been developed during General Assembly course, with the goal of 
 - [How I Made It](#how-i-made-it)
   - [Technologies Used](#technologies-used)
   - [Approach Taken](#approach-taken)
-  - [Bugs, Blockers & Wins](#bugs,-blockers-&-wins)
+  - [Bugs, Blockers & Wins](#bugs,-blockers--wins)
     - [Bugs](#bugs)
-    - [Challenges & Wins](#challenges-&-wins)
-  - [Future Features & Key Learning](#future-features-&-key-learning)
+    - [Challenges & Wins](#challenges--wins)
+  - [Future Features & Key Learning](#future-features--key-learning)
     - [Future Features](#future-features)
     - [Key Learning](#key-learning)
 - [Contributors](#contributors)
   - [Contributing to this project](#contributing-to-this-project) 
-- [License & Copyright](#license-&-copyright)
+- [License & Copyright](#license--copyright)
 - [Author Info](#author-info)
 
 ---
@@ -216,7 +216,7 @@ One of my biggest challenges is been the implementation of the second step where
 Took me a full day, but with the help from Daniel and my coach, we managed to implement a feature that I'm proud of.<br>
 ![img](assets/readme/selectRoles.gif)<br>
 You can see the code from [here](client/src/components/roles&groups)
-As well I love the responsiveness and the opportunity to be used without any problems on a small screen.
+As well I love the responsiveness and the opportunity to be used without any problems on a small screen.<br>
 ![img](assets/readme/responsive.gif)
 
 [Back To The Top](#the-bugbuster-)
