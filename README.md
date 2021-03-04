@@ -5,7 +5,7 @@ by [Alberto Cerrone](www.linkedin.com/in/alberto-cerrone) && [Daniel Fernandez D
 ![img](https://img.shields.io/badge/-WORK%20IN%20PROGRESS...-important)<br>
 Timeline: 7 days
 
-👉 [<b>Try me</b>](https://the-bugbuster.herokuapp.com/) 👈
+👉 [<b>Try Me</b>](https://the-bugbuster.herokuapp.com/) 👈
 
 ---
 
@@ -15,7 +15,7 @@ Timeline: 7 days
 The Bugbuster is an open-source, bug tracker, thought to be a customized software developed and tailored for a single entity.
 We decided to build this bug tracker to be used between us when we would like to collaborate again on a new project.
 
-This project is been developed during General Assembly course, with the goal of design a full-stack React app using Python, Django, and PostgreSQL. I'm actively working on this project.
+This project has been developed during General Assembly course, with the goal of design a full-stack React app using Python, Django, and PostgreSQL. I'm actively working on this project.
 
 ---
 
@@ -28,15 +28,15 @@ This project is been developed during General Assembly course, with the goal of 
 - [How I Made It](#how-i-made-it)
   - [Technologies Used](#technologies-used)
   - [Approach Taken](#approach-taken)
-  - [Bugs, Blockers & Wins](#bugs,-blockers-&-wins)
+  - [Bugs, Blockers & Wins](#bugs,-blockers--wins)
     - [Bugs](#bugs)
-    - [Challenges & Wins](#challenges-&-wins)
-  - [Future Features & Key Learning](#future-features-&-key-learning)
+    - [Challenges & Wins](#challenges--wins)
+  - [Future Features & Key Learning](#future-features--key-learning)
     - [Future Features](#future-features)
     - [Key Learning](#key-learning)
 - [Contributors](#contributors)
   - [Contributing to this project](#contributing-to-this-project) 
-- [License & Copyright](#license-&-copyright)
+- [License & Copyright](#license--copyright)
 - [Author Info](#author-info)
 
 ---
@@ -55,7 +55,7 @@ This JSON has to be imported to [Insomnia](https://insomnia.rest/)👇<br>
 
 
 ### Installation Steps
-Clone or download the repo then do the following in Terminal:
+Clone or download the repository then do the following in Terminal:
 
 - Install back-end dependencies:  `pipenv`
 - Enter Shell for project: `pipenv shell`
@@ -131,7 +131,7 @@ The status will be automatically assigned to "New", but it can be updated to dif
 ![img](assets/readme/tickets.png)<br>
 
 From the side bar, the user can navigate to the page Tickets.
-Tickets show all the tickets that a user created or he is been assigned to.
+Tickets show all the tickets that a user created or he has been assigned to.
 Every card shows the ticket name, ticket description, ticket type, and who is the owner or the user assigned.
 
 [Back To The Top](#the-bugbuster-)
@@ -141,7 +141,7 @@ Every card shows the ticket name, ticket description, ticket type, and who is th
 ### Technologies Used
 
 #### Languages Used
-- [Javascript](https://www.javascript.com/)
+- [JavaScript](https://www.javascript.com/)
 - [Python 3.9](https://www.python.org/downloads/release/python-390/)
 #### Frameworks
 - [Django](https://www.djangoproject.com/)
@@ -169,10 +169,10 @@ For my final project in General Assembly, I wanted to build something using Mate
 As well I wanted to build something in a team because I believe in the African proverb "If you want to go fast, go alone. If you want to go far, go together".
 
 When Daniel approached me with the idea of building a bug tracker app, I was instantly interested. It was matching my vision of building something that was going to:
-- be useful to me in the future 
-- talk about a common business problem
-- have a user authentication 
-- have an attractive and responsive UI
+- Be useful to me in the future 
+- Talk about a common business problem
+- Have a user authentication 
+- Have an attractive and responsive UI
 
 ##### Planning
 We spent the first day planning every face of the project:
@@ -209,14 +209,14 @@ From the third day until the last, both of us were working together on the front
 - [ ] Fix New ticket function (doesn't give the option to select the type)
  
 #### Challenges & Wins
-Building this project is been fun but, the short timeline didn't allow us to implement all the features that we were thinking to add, especially the most useful ones like the opportunity to update the tickets.<br>
+Building this project has been fun but, the short timeline didn't allow us to implement all the features that we were thinking to add, especially the most useful ones like the opportunity to update the tickets.<br>
 We had to cut some corners and twist a bit our backend diagram during the last hours before deadline.
 
-One of my biggest challenges is been the implementation of the second step where the user selects who is a member of the team and what roles he/she has.<br>
+One of my biggest challenges has been the implementation of the second step where the user selects who is a member of the team and what roles he/she has.<br>
 Took me a full day, but with the help from Daniel and my coach, we managed to implement a feature that I'm proud of.<br>
 ![img](assets/readme/selectRoles.gif)<br>
 You can see the code from [here](client/src/components/roles&groups)
-As well I love the responsiveness and the opportunity to be used without any problems on a small screen.
+As well I love the responsiveness and the opportunity to be used without any problems on a small screen.<br>
 ![img](assets/readme/responsive.gif)
 
 [Back To The Top](#the-bugbuster-)
