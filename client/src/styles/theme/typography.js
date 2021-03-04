@@ -6,7 +6,10 @@ export default {
   h1: {
     fontWeight: 600,
     fontSize: 35,
-    letterSpacing: '-0.24px'
+    letterSpacing: '-0.24px',
+    '@media (max-width: 600px)': {
+      fontSize: 25
+    }
   },
   h2: {
     fontWeight: 500,
@@ -16,7 +19,10 @@ export default {
   h3: {
     fontWeight: 500,
     fontSize: 24,
-    letterSpacing: '-0.06px'
+    letterSpacing: '-0.06px',
+    '@media (max-width: 600px)': {
+      fontSize: 20
+    }
   },
   h4: {
     fontWeight: 500,

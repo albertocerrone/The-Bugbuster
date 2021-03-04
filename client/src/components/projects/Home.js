@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%'
   },
   absolute: {
-    position: 'absolute',
+    position: 'absolute', //test fixed
     bottom: theme.spacing(2),
     right: theme.spacing(3)
   }

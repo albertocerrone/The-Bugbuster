@@ -11,30 +11,32 @@ const useStyles = makeStyles(() => ({
     height: '100vh'
   },
   logo: {
-    fontSize: 85,
+    fontSize: '230%',
     background: 'linear-gradient(96.21deg, #E751D8 39.3%, #17D5EF 90.17%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent'
   },
   firstBug: {
-    position: 'absolute',
+    position: 'fixed',
     width: '50%',
     height: '55%',
     left: '-5%',
     top: '-10%',
     transform: 'rotate(140deg)',
     zIndex: '-1',
-    color: 'rgba(23, 213, 239, 0.07)'
+    color: 'rgba(23, 213, 239, 0.07)',
+    overflow: 'hidden'
   },
   secondBug: {
-    position: 'absolute',
+    position: 'fixed',
     width: '50%',
     height: '50%',
     left: '55%',
     top: '50%',
     zIndex: '-1',
     color: 'rgba(231, 81, 216, 0.07)',
-    transform: 'rotate(40deg)'
+    transform: 'rotate(40deg)',
+    overflow: 'hidden'
   }
 }))
 
@@ -60,8 +62,7 @@ function LandingPage() {
             direction="column"
           >
             <Grid item alignItems="baseline" >
-
-              <Grid item >
+              <Grid item>
                 <Typography
                   variant="h1"
                 >
@@ -113,10 +114,13 @@ function LandingPage() {
           </Grid>
 
         </Grid>
-      </Grid>
-      <BugReportRoundedIcon className={classes.firstBug} />
-      <BugReportRoundedIcon className={classes.secondBug} />
-    </Container>
+      </Grid >
+      <div className="bugs">
+
+        <BugReportRoundedIcon className={classes.firstBug} />
+        <BugReportRoundedIcon className={classes.secondBug} />
+      </div>
+    </Container >
 
   )
 
