@@ -201,6 +201,8 @@ From the third day until the last, both of us were working together on the front
 #### Bugs
 - [ ] Fix problems with roles and different limitations
 - [x] Fix responsiveness and background issue in the landing page
+- [ ] Fix problem with Favicon
+- [ ] Fix problems/refactor error handling
 - [ ] Fix problems/refactor error handling
 - [ ] Fix floating buttons that move while scrolling
 - [ ] Change Icons in Tickets page
