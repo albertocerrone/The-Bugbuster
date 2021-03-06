@@ -228,6 +228,7 @@ As well I love the responsiveness and the opportunity to be used without any pro
 
 #### Future Features
 - [ ] Add Transitions & Animations
+- [x] Added better UI in register & login pages
 - [ ] Add Notification feature
 - [ ] Add Analytics page where user can find charts reflecting the performance tickets & projects
 - [ ] Improve Account page with better UI
