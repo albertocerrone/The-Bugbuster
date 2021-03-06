@@ -4,6 +4,7 @@ import { useHistory, Link as RouterLink } from 'react-router-dom'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
 import useForm from '../../utils/useForm'
+import BugReportRoundedIcon from '@material-ui/icons/BugReportRounded'
 
 import {
   Box,
@@ -25,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
     background: 'rgba(0, 0, 0, 0.1)',
     backdropFilter: 'blur(30px)',
     padding: '5%',
-    borderRadius: '45px'
+    borderRadius: '45px',
+    display: 'flex',
+    flexDirection: 'column'
   },
   logo: {
     fontSize: 45,
@@ -33,6 +36,28 @@ const useStyles = makeStyles((theme) => ({
     background: 'linear-gradient(96.21deg, #E751D8 39.3%, #17D5EF 90.17%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent'
+  },
+  firstBug: {
+    position: 'fixed',
+    width: '50%',
+    height: '55%',
+    left: '-5%',
+    top: '-10%',
+    transform: 'rotate(140deg)',
+    zIndex: '-1',
+    color: 'rgba(23, 213, 239, 0.07)',
+    overflow: 'hidden'
+  },
+  secondBug: {
+    position: 'fixed',
+    width: '50%',
+    height: '50%',
+    left: '55%',
+    top: '50%',
+    zIndex: '-1',
+    color: 'rgba(231, 81, 216, 0.07)',
+    transform: 'rotate(40deg)',
+    overflow: 'hidden'
   }
 }))
 
@@ -66,7 +91,7 @@ function Login() {
   }
 
   const classes = useStyles()
-  
+
   return (
     <Container fixed
       className={classes.root}>
@@ -77,7 +102,7 @@ function Login() {
         justifyContent="center" >
         <Container maxWidth="sm">
           <form onSubmit={handleSubmit} className={classes.form}>
-            <Box mb={3} style={{ marginLeft: '20%' }}>
+            <Box mt={1} style={{ alignSelf: 'center' }}>
               <Typography
                 color="textSecondary"
                 gutterBottom
@@ -122,7 +147,7 @@ function Login() {
             </Box>
             <Typography
               color="textSecondary"
-              variant="body1"
+              variant="body2"
             >
               Do you need an account?
               {' '}
@@ -137,6 +162,11 @@ function Login() {
           </form>
         </Container>
       </Box>
+      <div className="bugs">
+
+        <BugReportRoundedIcon className={classes.firstBug} />
+        <BugReportRoundedIcon className={classes.secondBug} />
+      </div>
     </Container>
   )
 
