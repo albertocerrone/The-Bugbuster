@@ -29,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
   productCard: {
     height: '100%'
   },
-  absolute: {
-    position: 'absolute', //test fixed
-    bottom: theme.spacing(2),
+  fixed: {
+    position: 'fixed',
+    bottom: theme.spacing(3),
     right: theme.spacing(3)
   }
 }))
@@ -122,7 +122,7 @@ function Home() {
             <Fab
               color="secondary"
               size="large"
-              className={classes.absolute}
+              className={classes.fixed}
               onClick={handleClick}
               component={Link} to={'/new-project'}
             >

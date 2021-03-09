@@ -203,7 +203,7 @@ From the third day until the last, both of us were working together on the front
 - [x] Fix responsiveness and background issue in the landing page
 - [ ] Fix problem with Favicon
 - [ ] Fix problems/refactor error handling
-- [ ] Fix floating buttons that move while scrolling
+- [x] Fix floating buttons that move while scrolling
 - [ ] Change Icons in Tickets page
 - [ ] Fix icons on the Project page (if the description is long they move at the bottom of the card)
 - [ ] Fix navbar that changes color when scrolling

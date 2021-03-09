@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
   productCard: {
     height: '100%'
   },
-  absolute: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
+  fixed: {
+    position: 'fixed',
+    bottom: theme.spacing(3),
     right: theme.spacing(3)
   }
 }))
@@ -144,7 +144,7 @@ function ProjectShow() {
             <Fab
               color="secondary"
               size="large"
-              className={classes.absolute}
+              className={classes.fixed}
               onClick={handleClick}
               component={RouterLink}
               to={`/home/projects/${id}/new-ticket`}
